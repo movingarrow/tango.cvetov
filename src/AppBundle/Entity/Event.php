@@ -60,7 +60,6 @@ class Event
 
     /**
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="event")
-     * @ORM\OrderBy({"createdAt" = "DESC"})
      */
     private $comment;
 
