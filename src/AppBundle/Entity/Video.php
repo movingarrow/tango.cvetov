@@ -12,22 +12,29 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="video")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Video
 {
     /**
+     * @var integer $id
+     *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id", type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @var string $name
+     *
+     * @ORM\Column(name="name", type="string")
      */
     private $name;
 
     /**
+     * @var string $event
+     *
      * @ORM\ManyToOne(targetEntity="Event", inversedBy="video")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */

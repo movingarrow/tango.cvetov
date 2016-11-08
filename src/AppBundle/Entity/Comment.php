@@ -12,18 +12,23 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="comment")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Comment
 {
     /**
+     * @var integer $id
+     *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id", type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @var string $comment
+     *
+     * @ORM\Column(name="comment", type="text")
      */
     private $comment;
 
@@ -34,7 +39,23 @@ class Comment
     private $event;
 
     /**
-     * @return mixed
+     * @var \DateTime $createdAt
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime $updatedAt
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -42,7 +63,23 @@ class Comment
     }
 
     /**
-     * @return mixed
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return Comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
      */
     public function getComment()
     {
@@ -50,15 +87,71 @@ class Comment
     }
 
     /**
-     * @param mixed $comment
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Comment
      */
-    public function setComment($comment)
+    public function setCreatedAt($createdAt)
     {
-        $this->comment = $comment;
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Comment
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \AppBundle\Entity\Event $event
+     *
+     * @return Comment
+     */
+    public function setEvent(\AppBundle\Entity\Event $event)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \AppBundle\Entity\Event
      */
     public function getEvent()
     {
@@ -66,11 +159,17 @@ class Comment
     }
 
     /**
-     * @param mixed $event
+     * before persist or update call the updatedTimestamps() function.
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
      */
-    public function setEvent($event)
+    public function updatedTimestamps()
     {
-        $this->event = $event;
-    }
+        $this->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
 
+        if ($this->getCreatedAt() == null) {
+            $this->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        }
+    }
 }

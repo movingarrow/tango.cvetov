@@ -12,30 +12,46 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="category")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Category
 {
     /**
+     * @var integer $id
+     *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id", type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @var string $name
+     *
+     * @ORM\Column(name="name", type="string")
      */
     private $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @var text $description
+     *
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime $createdAt
+     *
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @var \DateTime $updatedAt
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
 
     /**
      * @ORM\OneToMany(targetEntity="Event", mappedBy="category")
@@ -43,7 +59,17 @@ class Category
     private $event;
 
     /**
-     * @return mixed
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->event = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -51,7 +77,23 @@ class Category
     }
 
     /**
-     * @return mixed
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Category
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
      */
     public function getName()
     {
@@ -59,7 +101,23 @@ class Category
     }
 
     /**
-     * @return mixed
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Category
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
      */
     public function getDescription()
     {
@@ -67,7 +125,23 @@ class Category
     }
 
     /**
-     * @return mixed
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Category
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -75,36 +149,75 @@ class Category
     }
 
     /**
-     * @param mixed $name
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Category
      */
-    public function setName($name)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->name = $name;
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 
     /**
-     * @param mixed $description
+     * Get updatedAt
+     *
+     * @return \DateTime
      */
-    public function setDescription($description)
+    public function getUpdatedAt()
     {
-        $this->description = $description;
+        return $this->updatedAt;
     }
 
     /**
-     * @param mixed $createdAt
+     * Add event
+     *
+     * @param \AppBundle\Entity\Event $event
+     *
+     * @return Category
      */
-    public function setCreatedAt($createdAt)
+    public function addEvent(\AppBundle\Entity\Event $event)
     {
-        $this->createdAt = $createdAt;
+        $this->event[] = $event;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Remove event
+     *
+     * @param \AppBundle\Entity\Event $event
+     */
+    public function removeEvent(\AppBundle\Entity\Event $event)
+    {
+        $this->event->removeElement($event);
+    }
+
+    /**
+     * Get event
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEvent()
     {
         return $this->event;
     }
 
+    /**
+     * before persist or update call the updatedTimestamps() function.
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+        $this->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
 
+        if ($this->getCreatedAt() == null) {
+            $this->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        }
+    }
 }

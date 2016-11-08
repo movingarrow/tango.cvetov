@@ -12,33 +12,40 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="event")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Event
 {
     /**
+     * @var integer $id
+     *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id", type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @var string $name
+     * @ORM\Column(name="name", type="string")
      */
     private $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @var text $description
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime $createdAt
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime $updatedAt
+     * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
 
@@ -63,8 +70,21 @@ class Event
      */
     private $comment;
 
+
     /**
-     * @return mixed
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->photo = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->video = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comment = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -72,7 +92,23 @@ class Event
     }
 
     /**
-     * @return mixed
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Event
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
      */
     public function getName()
     {
@@ -80,15 +116,23 @@ class Event
     }
 
     /**
-     * @param mixed $name
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Event
      */
-    public function setName($name)
+    public function setDescription($description)
     {
-        $this->name = $name;
+        $this->description = $description;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get description
+     *
+     * @return string
      */
     public function getDescription()
     {
@@ -96,15 +140,23 @@ class Event
     }
 
     /**
-     * @param mixed $description
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Event
      */
-    public function setDescription($description)
+    public function setCreatedAt($createdAt)
     {
-        $this->description = $description;
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get createdAt
+     *
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -112,15 +164,23 @@ class Event
     }
 
     /**
-     * @param mixed $createdAt
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Event
      */
-    public function setCreatedAt($createdAt)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->createdAt = $createdAt;
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get updatedAt
+     *
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -128,15 +188,33 @@ class Event
     }
 
     /**
-     * @param mixed $updatedAt
+     * Add photo
+     *
+     * @param \AppBundle\Entity\Photo $photo
+     *
+     * @return Event
      */
-    public function setUpdatedAt($updatedAt)
+    public function addPhoto(\AppBundle\Entity\Photo $photo)
     {
-        $this->updatedAt = $updatedAt;
+        $this->photo[] = $photo;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Remove photo
+     *
+     * @param \AppBundle\Entity\Photo $photo
+     */
+    public function removePhoto(\AppBundle\Entity\Photo $photo)
+    {
+        $this->photo->removeElement($photo);
+    }
+
+    /**
+     * Get photo
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPhoto()
     {
@@ -144,7 +222,57 @@ class Event
     }
 
     /**
-     * @return mixed
+     * Add video
+     *
+     * @param \AppBundle\Entity\Video $video
+     *
+     * @return Event
+     */
+    public function addVideo(\AppBundle\Entity\Video $video)
+    {
+        $this->video[] = $video;
+
+        return $this;
+    }
+
+    /**
+     * Remove video
+     *
+     * @param \AppBundle\Entity\Video $video
+     */
+    public function removeVideo(\AppBundle\Entity\Video $video)
+    {
+        $this->video->removeElement($video);
+    }
+
+    /**
+     * Get video
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Event
+     */
+    public function setCategory(\AppBundle\Entity\Category $category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Category
      */
     public function getCategory()
     {
@@ -152,15 +280,33 @@ class Event
     }
 
     /**
-     * @param mixed $category
+     * Add comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     *
+     * @return Event
      */
-    public function setCategory($category)
+    public function addComment(\AppBundle\Entity\Comment $comment)
     {
-        $this->category = $category;
+        $this->comment[] = $comment;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Remove comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     */
+    public function removeComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comment->removeElement($comment);
+    }
+
+    /**
+     * Get comment
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getComment()
     {
@@ -168,11 +314,17 @@ class Event
     }
 
     /**
-     * @return mixed
+     * before persist or update call the updatedTimestamps() function.
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
      */
-    public function getVideo()
+    public function updatedTimestamps()
     {
-        return $this->video;
-    }
+        $this->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
 
+        if ($this->getCreatedAt() == null) {
+            $this->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        }
+    }
 }

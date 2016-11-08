@@ -1,0 +1,56 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: dms
+ * Date: 11/7/16
+ * Time: 10:36 PM
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="user")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class User
+{
+
+    private $id;
+
+
+    private $login;
+
+
+    private $pass;
+
+
+    private $email;
+
+
+    private $createdAt;
+
+
+    private $updatedAt;
+
+    
+
+    /**
+     * before persist or update call the updatedTimestamps() function.
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+        $this->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+
+        if ($this->getCreatedAt() == null) {
+            $this->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        }
+    }
+
+
+    
+}

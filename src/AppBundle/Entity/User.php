@@ -12,38 +12,58 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User
 {
     /**
+     * @var integer $id
+     *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id", type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @var string $login
+     *
+     * @ORM\Column(name="login", type="string")
      */
     private $login;
 
     /**
-     * @ORM\Column(type="string")
+     * @var string $pass
+     *
+     * @ORM\Column(name="pass", type="string")
      */
     private $pass;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var string $email
+     *
+     * @ORM\Column(name="email", type="string")
+     */
+    private $email;
+
+    /**
+     * @var \DateTime $createdAt
+     *
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime $updatedAt
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
 
     /**
-     * @return mixed
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -51,7 +71,23 @@ class User
     }
 
     /**
-     * @return mixed
+     * Set login
+     *
+     * @param string $login
+     *
+     * @return User
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string
      */
     public function getLogin()
     {
@@ -59,7 +95,23 @@ class User
     }
 
     /**
-     * @return mixed
+     * Set pass
+     *
+     * @param string $pass
+     *
+     * @return User
+     */
+    public function setPass($pass)
+    {
+        $this->pass = $pass;
+
+        return $this;
+    }
+
+    /**
+     * Get pass
+     *
+     * @return string
      */
     public function getPass()
     {
@@ -67,7 +119,47 @@ class User
     }
 
     /**
-     * @return mixed
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return User
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -75,7 +167,23 @@ class User
     }
 
     /**
-     * @return mixed
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return User
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -83,36 +191,17 @@ class User
     }
 
     /**
-     * @param mixed $login
+     * before persist or update call the updatedTimestamps() function.
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
      */
-    public function setLogin($login)
+    public function updatedTimestamps()
     {
-        $this->login = $login;
+        $this->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+
+        if ($this->getCreatedAt() == null) {
+            $this->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        }
     }
-
-    /**
-     * @param mixed $pass
-     */
-    public function setPass($pass)
-    {
-        $this->pass = $pass;
-    }
-
-    /**
-     * @param mixed $createdAt
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * @param mixed $updatedAt
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-
 }

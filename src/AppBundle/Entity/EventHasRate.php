@@ -13,35 +13,42 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="event_has_rate")
  */
-class Event_Has_Rate
+class EventHasRate
 {
     /**
+     * @var integer $id
+     *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id", type="integer")
      */
     private $id;
 
     /**
+     *
      * @ORM\ManyToOne(targetEntity="Event")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $event_id;
 
     /**
+     *
      * @ORM\ManyToOne(targetEntity="Rating")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $rate_id;
 
     /**
+     *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $user_id;
 
     /**
-     * @return mixed
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -49,7 +56,23 @@ class Event_Has_Rate
     }
 
     /**
-     * @return mixed
+     * Set eventId
+     *
+     * @param \AppBundle\Entity\Event $eventId
+     *
+     * @return EventHasRate
+     */
+    public function setEventId(\AppBundle\Entity\Event $eventId)
+    {
+        $this->event_id = $eventId;
+
+        return $this;
+    }
+
+    /**
+     * Get eventId
+     *
+     * @return \AppBundle\Entity\Event
      */
     public function getEventId()
     {
@@ -57,15 +80,23 @@ class Event_Has_Rate
     }
 
     /**
-     * @param mixed $event_id
+     * Set rateId
+     *
+     * @param \AppBundle\Entity\Rating $rateId
+     *
+     * @return EventHasRate
      */
-    public function setEventId($event_id)
+    public function setRateId(\AppBundle\Entity\Rating $rateId)
     {
-        $this->event_id = $event_id;
+        $this->rate_id = $rateId;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get rateId
+     *
+     * @return \AppBundle\Entity\Rating
      */
     public function getRateId()
     {
@@ -73,27 +104,26 @@ class Event_Has_Rate
     }
 
     /**
-     * @param mixed $rate_id
+     * Set userId
+     *
+     * @param \AppBundle\Entity\User $userId
+     *
+     * @return EventHasRate
      */
-    public function setRateId($rate_id)
+    public function setUserId(\AppBundle\Entity\User $userId)
     {
-        $this->rate_id = $rate_id;
+        $this->user_id = $userId;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get userId
+     *
+     * @return \AppBundle\Entity\User
      */
     public function getUserId()
     {
         return $this->user_id;
     }
-
-    /**
-     * @param mixed $user_id
-     */
-    public function setUserId($user_id)
-    {
-        $this->user_id = $user_id;
-    }
-
 }
