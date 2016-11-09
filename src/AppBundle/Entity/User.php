@@ -9,12 +9,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+
 /**
  * @ORM\Entity
- * @ORM\Table(name="user")
+ * @ORM\Table(name="fos_user")
  * @ORM\HasLifecycleCallbacks()
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var integer $id
@@ -23,7 +25,7 @@ class User
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(name="id", type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $login
@@ -203,5 +205,10 @@ class User
         if ($this->getCreatedAt() == null) {
             $this->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         }
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
     }
 }
