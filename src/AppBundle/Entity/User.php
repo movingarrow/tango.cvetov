@@ -28,27 +28,6 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var string $login
-     *
-     * @ORM\Column(name="login", type="string")
-     */
-    private $login;
-
-    /**
-     * @var string $pass
-     *
-     * @ORM\Column(name="pass", type="string")
-     */
-    private $pass;
-
-    /**
-     * @var string $email
-     *
-     * @ORM\Column(name="email", type="string")
-     */
-    private $email;
-
-    /**
      * @var \DateTime $createdAt
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -70,78 +49,6 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set login
-     *
-     * @param string $login
-     *
-     * @return User
-     */
-    public function setLogin($login)
-    {
-        $this->login = $login;
-
-        return $this;
-    }
-
-    /**
-     * Get login
-     *
-     * @return string
-     */
-    public function getLogin()
-    {
-        return $this->login;
-    }
-
-    /**
-     * Set pass
-     *
-     * @param string $pass
-     *
-     * @return User
-     */
-    public function setPass($pass)
-    {
-        $this->pass = $pass;
-
-        return $this;
-    }
-
-    /**
-     * Get pass
-     *
-     * @return string
-     */
-    public function getPass()
-    {
-        return $this->pass;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 
     /**
