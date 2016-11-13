@@ -99,18 +99,4 @@ class Photo
         return $this->event;
     }
 
-    /**
-     * before persist or update call the updatedTimestamps() function.
-     *
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     */
-    public function updatedTimestamps()
-    {
-        $this->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-
-        if ($this->getCreatedAt() == null) {
-            $this->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        }
-    }
 }
