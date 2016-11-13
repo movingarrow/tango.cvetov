@@ -8,13 +8,14 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
 use Nelmio\Alice\Fixtures;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class LoadUserData implements FixtureInterface, OrderedFixtureInterface
+class LoadUserData extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -38,6 +39,8 @@ class LoadUserData implements FixtureInterface, OrderedFixtureInterface
 
             $manager->persist($user);
         }
+
+        $this->addReference('admin55', $user);
 
         $manager->flush();
     }

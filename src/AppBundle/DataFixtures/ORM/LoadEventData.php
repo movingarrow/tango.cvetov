@@ -28,6 +28,8 @@ class LoadEventData extends AbstractFixture implements FixtureInterface, Ordered
         #$event->getPhoto('/photos/project-pic1.jpg');
         #$event->setComment('Hi Five!');
 
+        $this->addReference('Freeman\'s Wedding at Concervatory!', $event);
+
         $event->setCategory($this->getReference('Wedding'));
 
         $manager->persist($event);
