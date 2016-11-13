@@ -3,3 +3,13 @@ AppBundle\Entity\User:
     username: <username()>
     password: <lastName()>
     email: <email()>
+
+AppBundle\Entity\Event:
+  event_{1..10}:
+    name: <firstName()>
+    description: <text(20)>
+    createdAt: '<dateTimeBetween("-365 days", "now")>'
+    updatedAt: '<dateTimeBetween($createdAt, "now")>'
+    photo: '33%? full-project-1.jpg : full-project-2.jpg : full-project-3.jpg'
+    #video:
+    comment: 30%? <sentence()>
