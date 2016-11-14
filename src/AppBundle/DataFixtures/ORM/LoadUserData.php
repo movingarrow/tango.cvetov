@@ -36,11 +36,11 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, OrderedF
             $user->setUsername('admin' . $i);
             $user->setPassword('test' . $i);
             $user->setEmail('test'. $i .'@test.kg');
-
+            $this->addReference('admin' . $i, $user);
             $manager->persist($user);
         }
 
-        $this->addReference('admin55', $user);
+
 
         $manager->flush();
     }
