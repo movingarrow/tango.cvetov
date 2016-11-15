@@ -1,6 +1,6 @@
 <?php
 
-namespace UserBundle\Controller;
+namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -14,7 +14,7 @@ class PortfolioController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('portfolio.html.twig', array(
+        return $this->render('AppBundle:index:index.html.twig', array(
 
         ));
     }
