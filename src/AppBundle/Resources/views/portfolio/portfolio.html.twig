@@ -2,4 +2,29 @@
 
 {% block body %}
 
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Users</th>
+            <th>Email</th>
+            <th>Last updated</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>
+                    <a href="{{ path('user_show', {'userName': user.username}) }}">
+                        {{ user.username }}
+                    </a>
+                </td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.updatedAt|date('Y-m-d') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock %}

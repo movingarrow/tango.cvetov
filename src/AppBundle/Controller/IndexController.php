@@ -8,10 +8,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 /**
  * @Route("/")
  */
-class DefaultController extends Controller
+class IndexController extends Controller
 {
     /**
-     * @Route(name="homepage")
+     * @Route("", name="homepage")
      */
     public function indexAction()
     {
