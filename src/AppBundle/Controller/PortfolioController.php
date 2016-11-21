@@ -19,10 +19,14 @@ class PortfolioController extends Controller
         $events = $em->getRepository('AppBundle\Entity\Event')
             ->findAll();
 
+        $photos = $em->getRepository('AppBundle\Entity\Photo')
+            ->findAll();
+
         #dump($events);die;
 
         return $this->render('AppBundle:portfolio:portfolio.html.twig', [
-            'events' => $events
+            'events' => $events,
+            'photos' => $photos,
         ]);
     }
 

@@ -19,13 +19,13 @@ class LoadPhotoVideoData extends AbstractFixture implements FixtureInterface, Or
 
 
         $photo = new Photo();
-        $photo->setName('projects-1.jpg');
+        $photo->setName('bundles/app/images/portfolio/weddings/freeman/freeman0.jpg');
 
         $video = new Video();
         $video->setName('project-video1.jpg');
 
-        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
-        $video->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+        $photo->setEvent($this->getReference('Freeman\'s Wedding'));
+        $video->setEvent($this->getReference('Freeman\'s Wedding'));
 
         $manager->persist($photo);
         $manager->persist($video);
@@ -33,99 +33,99 @@ class LoadPhotoVideoData extends AbstractFixture implements FixtureInterface, Or
         /***************************/
 
         $photo = new Photo();
-        $photo->setName('projects-2.jpg');
+        $photo->setName('bundles/app/images/portfolio/weddings/freeman/freeman1.jpg');
 
-        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
-
-        $manager->persist($photo);
-
-        /***************************/
-
-        $photo = new Photo();
-        $photo->setName('projects-3.jpg');
-
-        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+        $photo->setEvent($this->getReference('Freeman\'s Wedding'));
 
         $manager->persist($photo);
 
         /***************************/
 
         $photo = new Photo();
-        $photo->setName('projects-4.jpg');
+        $photo->setName('bundles/app/images/portfolio/weddings/freeman/freeman2.jpg');
 
-        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
-
-        $manager->persist($photo);
-
-        /***************************/
-
-        $photo = new Photo();
-        $photo->setName('projects-5.jpg');
-
-        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+        $photo->setEvent($this->getReference('Freeman\'s Wedding'));
 
         $manager->persist($photo);
 
         /***************************/
 
         $photo = new Photo();
-        $photo->setName('projects-6.jpg');
+        $photo->setName('bundles/app/images/portfolio/weddings/freeman/freeman3.jpg');
 
-        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
-
-        $manager->persist($photo);
-
-        /***************************/
-
-        $photo = new Photo();
-        $photo->setName('projects-7.jpg');
-
-        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+        $photo->setEvent($this->getReference('Freeman\'s Wedding'));
 
         $manager->persist($photo);
 
         /***************************/
 
         $photo = new Photo();
-        $photo->setName('projects-8.jpg');
+        $photo->setName('bundles/app/images/portfolio/weddings/freeman/freeman4.jpg');
 
-        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
-
-        $manager->persist($photo);
-
-        /***************************/
-
-        $photo = new Photo();
-        $photo->setName('projects-9.jpg');
-
-        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+        $photo->setEvent($this->getReference('Freeman\'s Wedding'));
 
         $manager->persist($photo);
 
         /***************************/
 
         $photo = new Photo();
-        $photo->setName('projects-10.jpg');
+        $photo->setName('bundles/app/images/portfolio/weddings/freeman/freeman5.jpg');
 
-        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
-
-        $manager->persist($photo);
-
-        /***************************/
-
-        $photo = new Photo();
-        $photo->setName('projects-11.jpg');
-
-        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+        $photo->setEvent($this->getReference('Freeman\'s Wedding'));
 
         $manager->persist($photo);
 
         /***************************/
 
         $photo = new Photo();
-        $photo->setName('projects-12.jpg');
+        $photo->setName('bundles/app/images/portfolio/weddings/shusharin/shusharin0.jpg');
 
-        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+        $photo->setEvent($this->getReference('Shusharin\'s Wedding'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('bundles/app/images/portfolio/weddings/shusharin/shusharin1.jpg');
+
+        $photo->setEvent($this->getReference('Shusharin\'s Wedding'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('bundles/app/images/portfolio/weddings/shusharin/shusharin2.jpg');
+
+        $photo->setEvent($this->getReference('Shusharin\'s Wedding'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('bundles/app/images/portfolio/weddings/shusharin/shusharin3.jpg');
+
+        $photo->setEvent($this->getReference('Shusharin\'s Wedding'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('bundles/app/images/portfolio/weddings/shusharin/shusharin4.jpg');
+
+        $photo->setEvent($this->getReference('Shusharin\'s Wedding'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('bundles/app/images/portfolio/weddings/shusharin/shusharin5.jpg');
+
+        $photo->setEvent($this->getReference('Shusharin\'s Wedding'));
 
         $manager->persist($photo);
 

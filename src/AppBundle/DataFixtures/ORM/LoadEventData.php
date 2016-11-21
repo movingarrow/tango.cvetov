@@ -17,22 +17,111 @@ class LoadEventData extends AbstractFixture implements FixtureInterface, Ordered
         #$objects = Fixtures::load(__DIR__.'/fixtures.yml', $manager);
 
         $event = new Event();
-        $event->setName('Freeman\'s Wedding at Concervatory!');
-//        $event->setDescription('A wedding is a ceremony where two people are united in marriage. Wedding traditions and
-//                                        customs vary greatly between cultures, ethnic groups, religions, countries, and social
-//                                        classes. Most wedding ceremonies involve an exchange of marriage vows by the couple,
-//                                        presentation of a gift (offering, ring(s), symbolic item, flowers, money), and a public
-//                                        proclamation of marriage by an authority figure. Special wedding garments are often worn,
-//                                        and the ceremony is sometimes followed by a wedding reception. Music, poetry, prayers
-//                                        or readings from religious texts or literature are also commonly incorporated into the ceremony.');
-        #$event->getPhoto('/photos/project-pic1.jpg');
-        #$event->setComment('Hi Five!');
+        $event->setName('Freeman\'s Wedding');
+        $event->setDescription('Dimas and Zinas Wedding at Concervatory!');
 
-        $this->addReference('Freeman\'s Wedding at Concervatory!', $event);
+        $this->addReference('Freeman\'s Wedding', $event);
 
         $event->setCategory($this->getReference('Wedding'));
 
         $manager->persist($event);
+
+        /****************************************/
+
+        $event = new Event();
+        $event->setName('Shusharin\'s Wedding');
+        $event->setDescription('Dima and Alinas Wedding at Uncle Tom\'s Hut!');
+
+        $this->addReference('Shusharin\'s Wedding', $event);
+
+        $event->setCategory($this->getReference('Wedding'));
+
+        $manager->persist($event);
+
+        /****************************************/
+
+        $event = new Event();
+        $event->setName('Veremei\'s Wedding');
+        $event->setDescription('Slavas and Alinas Wedding at Bar 111!');
+
+        $this->addReference('Veremei\'s Wedding', $event);
+
+        $event->setCategory($this->getReference('Wedding'));
+
+        $manager->persist($event);
+
+        /****************************************/
+
+        $event = new Event();
+        $event->setName('Volodyas\'s Anniversary');
+        $event->setDescription('Volodyas\'s Anniversary at Kainar!');
+
+        $this->addReference('Volodyas\'s Anniversary', $event);
+
+        $event->setCategory($this->getReference('Anniversary'));
+
+        $manager->persist($event);
+
+        /****************************************/
+
+        $event = new Event();
+        $event->setName('Mira\'s Anniversary');
+        $event->setDescription('Mira\'s Anniversary at Golden Dragon!');
+
+        $this->addReference('Mira\'s Anniversary', $event);
+
+        $event->setCategory($this->getReference('Anniversary'));
+
+        $manager->persist($event);
+
+        /****************************************/
+
+        $event = new Event();
+        $event->setName('Igor\'s Anniversary');
+        $event->setDescription('Igor\'s Anniversary at Shisha Bar!');
+
+        $this->addReference('Igor\'s Anniversary', $event);
+
+        $event->setCategory($this->getReference('Anniversary'));
+
+        $manager->persist($event);
+
+        /****************************************/
+
+        $event = new Event();
+        $event->setName('Katya\'s Kids Party');
+        $event->setDescription('Katya\'s Kids Party at CosmoPark!');
+
+        $this->addReference('Katya\'s Kids Party', $event);
+
+        $event->setCategory($this->getReference('Kids Party'));
+
+        $manager->persist($event);
+
+        /****************************************/
+
+        $event = new Event();
+        $event->setName('Misha\'s Kids Party');
+        $event->setDescription('Misha\'s Kids Party at DisneyLand!');
+
+        $this->addReference('Misha\'s Kids Party', $event);
+
+        $event->setCategory($this->getReference('Kids Party'));
+
+        $manager->persist($event);
+
+        /****************************************/
+
+        $event = new Event();
+        $event->setName('Rudolph\'s Kids Party');
+        $event->setDescription('Rudolph\'s Kids Party at Netherlands!');
+
+        $this->addReference('Rudolph\'s Kids Party', $event);
+
+        $event->setCategory($this->getReference('Kids Party'));
+
+        $manager->persist($event);
+
         $manager->flush();
 
 

@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -27,9 +28,24 @@ class Photo
     private $id;
 
     /**
+     * @Assert\File(
+     * maxSize="10M",
+     * mimeTypes={
+     *     "image/png",
+     *     "image/jpeg",
+     *     "image/gif",
+     *     "image/jpg",
+     *     "image/svg"
+     *     }
+     * )
+     *
+     */
+    protected $file;
+
+    /**
      * @var string $name
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(name="name", type="string")
      */
     private $name;
 
@@ -41,20 +57,62 @@ class Photo
      */
     private $event;
 
-  
+     /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
-     * before persist or update call the updatedTimestamps() function.
+     * Set name
      *
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
+     * @param string $name
+     *
+     * @return Photo
      */
-    public function updatedTimestamps()
+    public function setName($name)
     {
-        $this->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $this->name = $name;
 
-        if ($this->getCreatedAt() == null) {
-            $this->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        }
+        return $this;
     }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \AppBundle\Entity\Event $event
+     *
+     * @return Photo
+     */
+    public function setEvent(\AppBundle\Entity\Event $event)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \AppBundle\Entity\Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
 }

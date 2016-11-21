@@ -31,6 +31,7 @@ class Event
      */
     private $name;
 
+
     /**
      * @var text $description
      * @ORM\Column(name="description", type="text", nullable=true)

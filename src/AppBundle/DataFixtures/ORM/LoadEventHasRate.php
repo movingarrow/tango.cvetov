@@ -18,7 +18,7 @@ class LoadEventHasRate extends AbstractFixture implements FixtureInterface, Orde
 
         $ehr = new EventHasRate();
 
-        $ehr->setEventId($this->getReference('Freeman\'s Wedding at Concervatory!'));
+        $ehr->setEventId($this->getReference('Freeman\'s Wedding'));
         $ehr->setRateId($this->getReference(5));
         $ehr->setUserId($this->getReference('admin55'));
 
