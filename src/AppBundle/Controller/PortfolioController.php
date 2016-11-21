@@ -16,24 +16,28 @@ class PortfolioController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $users = $em->getRepository('AppBundle\Entity\User')
+        $events = $em->getRepository('AppBundle\Entity\Event')
             ->findAll();
 
-        #dump($users);
+        #dump($events);die;
 
         return $this->render('AppBundle:portfolio:portfolio.html.twig', [
-            'users' => $users
+            'events' => $events
         ]);
     }
 
     /**
-     * @Route("/show", name="user_show")
+     * @Route("/show/{eventName}", name="single_event_show")
      */
-    public function showAction($userName)
+    public function showAction($eventId)
     {
+        $em = $this->getDoctrine()->getManager();
 
-        return $this->render('AppBundle:portfolio:user.html.twig', [
-            'users' => $users
+        $events = $em->getRepository('AppBundle\Entity\Event')
+            ->findOneBy($eventId);
+
+        return $this->render('AppBundle:portfolio:show.html.twig', [
+            'events' => $events
         ]);
     }
 }

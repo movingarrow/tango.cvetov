@@ -17,10 +17,9 @@ class LoadPhotoVideoData extends AbstractFixture implements FixtureInterface, Or
     {
         #$objects = Fixtures::load(__DIR__.'/fixtures.yml', $manager);
 
-        #var_dump('1');exit;
 
         $photo = new Photo();
-        $photo->setName('project-pic1.jpg');
+        $photo->setName('projects-1.jpg');
 
         $video = new Video();
         $video->setName('project-video1.jpg');
@@ -30,6 +29,108 @@ class LoadPhotoVideoData extends AbstractFixture implements FixtureInterface, Or
 
         $manager->persist($photo);
         $manager->persist($video);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('projects-2.jpg');
+
+        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('projects-3.jpg');
+
+        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('projects-4.jpg');
+
+        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('projects-5.jpg');
+
+        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('projects-6.jpg');
+
+        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('projects-7.jpg');
+
+        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('projects-8.jpg');
+
+        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('projects-9.jpg');
+
+        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('projects-10.jpg');
+
+        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('projects-11.jpg');
+
+        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
+        $photo = new Photo();
+        $photo->setName('projects-12.jpg');
+
+        $photo->setEvent($this->getReference('Freeman\'s Wedding at Concervatory!'));
+
+        $manager->persist($photo);
+
+        /***************************/
+
         $manager->flush();
 
 

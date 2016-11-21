@@ -15,6 +15,15 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AppBundle:index:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $events = $em->getRepository('AppBundle\Entity\Event')
+            ->findAll();
+
+        #dump($events);die;
+
+        return $this->render('AppBundle:index:index.html.twig', [
+            #'events' => $events
+        ]);
     }
 }
