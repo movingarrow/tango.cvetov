@@ -1,5 +1,35 @@
 {% extends 'base.html.twig' %}
 
+{% block navigation_panel %}
+    <!-- Navigation panel -->
+    <nav class="main-nav transparent stick-fixed">
+        <div class="full-wrapper relative clearfix">
+            <!-- Logo ( * your text or image into link tag *) -->
+            <div class="nav-logo-wrap local-scroll">
+                <a href="#top" class="logo">
+                    <img src="{{ asset('bundles/app/images/logo-white.png') }}" alt="" />
+                </a>
+            </div>
+            <div class="mobile-nav">
+                <i class="fa fa-bars"></i>
+            </div>
+            <!-- Main Menu -->
+            <div class="inner-nav desktop-nav">
+                <ul class="clearlist scroll-nav local-scroll">
+                    <li class="active"><a href="#home">Home</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#portfolio">Портфолио</a></li>
+                    <li><a href="#news">Новости</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navigation panel -->
+{% endblock navigation_panel %}
+
 {% block body %}
     {#{{ dump(events) }}#}
 
@@ -37,7 +67,7 @@
         <div class="relative">
 
             <h2 class="section-title font-alt mb-70 mb-sm-40">
-                Portfolio
+                Портфолио
             </h2>
 
             <div class="container">
@@ -55,9 +85,10 @@
                 </div>
             </div>
 
-    {% for photo in photos %}
-        
-    {% endfor %}
+
+
+
+
             <!-- Works Filter -->
             <div class="works-filter font-alt align-center">
                 <a href="#" class="filter active" data-filter="*">Все Работы</a>
@@ -67,8 +98,19 @@
             </div>
             <!-- End Works Filter -->
 
+
             <!-- Works Grid -->
             <ul class="works-grid work-grid-3 work-grid-gut clearfix font-alt hover-white hide-titles" id="work-grid">
+
+
+{#{{ events.photo.0 }}#}
+                {% for photo in events.photo %}
+
+
+                {% endfor %}
+
+                {% for photo in photos %}
+
 
                 <!-- Work Item (Lightbox) -->
                 <li class="work-item mix kids">
@@ -77,7 +119,7 @@
                             <img src="{{ asset( photo.name ) }}" alt="Work" />
                         </div>
                         <div class="work-intro">
-                            <h3 class="work-title">Portrait</h3>
+                            <h3 class="work-title">{{ photo.event.name }}</h3>
                             <div class="work-descr">
                                 Lightbox
                             </div>
@@ -85,6 +127,8 @@
                     </a>
                 </li>
                 <!-- End Work Item -->
+
+                {% endfor %}
 
                 //, {'eventName': events.name})
                 <!-- Work Item (External Page) -->
