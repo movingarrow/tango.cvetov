@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+
+
 {% block navigation_panel %}
     <!-- Navigation panel -->
     <nav class="main-nav transparent stick-fixed">
@@ -30,6 +32,8 @@
     <!-- End Navigation panel -->
 {% endblock navigation_panel %}
 
+
+
 {% block body %}
     {#{{ dump(events) }}#}
 
@@ -59,6 +63,9 @@
         {#{% endfor %}#}
         {#</tbody>#}
     {#</table>#}
+
+
+    {{ dump(events) }}
 
     {% block fullwidth_slider %} {% endblock fullwidth_slider %}
 
@@ -103,34 +110,45 @@
             <ul class="works-grid work-grid-3 work-grid-gut clearfix font-alt hover-white hide-titles" id="work-grid">
 
 
-{#{{ events.photo.0 }}#}
-                {% for photo in events.photo %}
 
 
-                {% endfor %}
 
-                {% for photo in photos %}
-
+                {% for event in events %}
 
                 <!-- Work Item (Lightbox) -->
-                <li class="work-item mix kids">
-                    <a href="{{ asset( photo.name ) }}" class="work-lightbox-link mfp-image">
+                <li class="work-item mix {{  event.category.name|lower }}">
+                    {% for image in event.photo %}
+                    <a href="{{ asset( image.name ) }}" class="lightbox-gallery-1 mfp-image ">
+
+
                         <div class="work-img">
-                            <img src="{{ asset( photo.name ) }}" alt="Work" />
+
+
+                           <img  {% if loop.index != 1 %} style="display: none;" {% endif %}  src="{{ asset( image.name ) }}" alt="Work"  />
+
+
                         </div>
+
+                        {#<img style="display: none;"   src="{{ asset( image.name ) }}" alt="Work" />#}
+
                         <div class="work-intro">
-                            <h3 class="work-title">{{ photo.event.name }}</h3>
+                            <h3 class="work-title">{{ event.name }}</h3>
                             <div class="work-descr">
-                                Lightbox
+                                {{  event.category.name }}
+                            </div>
+                            <div class="work-comment">
+                        {% for comment in event.comment %} "{{ comment.comment }}" {% endfor %}
                             </div>
                         </div>
+
                     </a>
+                    {% endfor %}
                 </li>
                 <!-- End Work Item -->
-
                 {% endfor %}
 
-                //, {'eventName': events.name})
+
+
                 <!-- Work Item (External Page) -->
                 <li class="work-item mix wedding anniversary">
                     <a href="{{ path('portfolio') }}" class="work-ext-link">
@@ -217,5 +235,6 @@
         </div>
     </section>
     <!-- End Portfolio Section -->
+
 
 {% endblock %}
