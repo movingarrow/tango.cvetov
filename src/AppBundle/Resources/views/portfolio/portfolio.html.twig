@@ -1,35 +1,36 @@
 {% extends 'base.html.twig' %}
 
 
-
 {% block navigation_panel %}
+
     <!-- Navigation panel -->
     <nav class="main-nav transparent stick-fixed">
         <div class="full-wrapper relative clearfix">
             <!-- Logo ( * your text or image into link tag *) -->
             <div class="nav-logo-wrap local-scroll">
                 <a href="#top" class="logo">
-                    <img src="{{ asset('bundles/app/images/logo-white.png') }}" alt="" />
+                    <img src="{{ asset('bundles/app/images/logo-dark.png') }}" alt="" />
                 </a>
             </div>
-            <div class="mobile-nav">
+                <div class="mobile-nav">
                 <i class="fa fa-bars"></i>
             </div>
             <!-- Main Menu -->
             <div class="inner-nav desktop-nav">
                 <ul class="clearlist scroll-nav local-scroll">
-                    <li class="active"><a href="#home">Home</a></li>
-                    <li><a href="#about">О нас</a></li>
-                    <li><a href="#services">Услуги</a></li>
+                    <li class="active"><a href="{{ path('homepage') }}">Home</a></li>
+                    <li><a href="{{ path('homepage') }}#about">О нас</a></li>
+                    <li><a href="{{ path('homepage') }}#services">Услуги</a></li>
                     <li><a href="#portfolio">Портфолио</a></li>
-                    <li><a href="#news">Новости</a></li>
-                    <li><a href="#contact">Контакты</a></li>
+                    <li><a href="{{ path('homepage') }}#news">Новости</a></li>
+                    <li><a href="{{ path('homepage') }}#contact">Контакты</a></li>
 
                 </ul>
             </div>
         </div>
     </nav>
     <!-- End Navigation panel -->
+
 {% endblock navigation_panel %}
 
 
@@ -65,7 +66,6 @@
     {#</table>#}
 
 
-    {{ dump(events) }}
 
     {% block fullwidth_slider %} {% endblock fullwidth_slider %}
 
@@ -109,124 +109,27 @@
             <!-- Works Grid -->
             <ul class="works-grid work-grid-3 work-grid-gut clearfix font-alt hover-white hide-titles" id="work-grid">
 
-
-
-
-
+                <!-- Work Item (Lightbox) -->
                 {% for event in events %}
-
-                <!-- Work Item (Lightbox) -->
-                <li class="work-item mix {{  event.category.name|lower }}">
-                    {% for image in event.photo %}
-                    <a href="{{ asset( image.name ) }}" class="lightbox-gallery-1 mfp-image ">
-
-
-                        <div class="work-img">
-
-
-                           <img  {% if loop.index != 1 %} style="display: none;" {% endif %}  src="{{ asset( image.name ) }}" alt="Work"  />
-
-
-                        </div>
-
-                        {#<img style="display: none;"   src="{{ asset( image.name ) }}" alt="Work" />#}
-
-                        <div class="work-intro">
-                            <h3 class="work-title">{{ event.name }}</h3>
-                            <div class="work-descr">
-                                {{  event.category.name }}
-                            </div>
-                            <div class="work-comment">
-                        {% for comment in event.comment %} "{{ comment.comment }}" {% endfor %}
-                            </div>
-                        </div>
-
-                    </a>
-                    {% endfor %}
-                </li>
-                <!-- End Work Item -->
+                    <li class="work-item mix {{  event.category.name|lower }}">
+                        {#{% for image in event.photo %}#}
+                            <a href="{{ path('single_event_show', {'eventId': event.id}) }}" class="work-ext-link">
+                                <div class="work-img">
+                                    <img src="{{ asset( event.photo.0.name ) }}" alt="Work"  />
+                                </div>
+                                <div class="work-intro">
+                                    <h3 class="work-title">{{ event.name }}</h3>
+                                    <div class="work-descr">
+                                        {{  event.category.name }}
+                                    </div>
+                                    <div class="work-comment">
+                                        {% for comment in event.comment %} "{{ comment.comment }}" {% endfor %}
+                                    </div>
+                                </div>
+                            </a>
+                        {#{% endfor %}#}
+                    </li>
                 {% endfor %}
-
-
-
-                <!-- Work Item (External Page) -->
-                <li class="work-item mix wedding anniversary">
-                    <a href="{{ path('portfolio') }}" class="work-ext-link">
-                        <div class="work-img">
-                            <img class="work-img" src="{{ asset('bundles/app/images/portfolio/projects-2.jpg') }}" alt="Work" />
-                        </div>
-                        <div class="work-intro">
-                            <h3 class="work-title">Vase 3D</h3>
-                            <div class="work-descr">
-                                External Page
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- End Work Item -->
-
-                <!-- Work Item (External Page) -->
-                <li class="work-item mix wedding">
-                    <a href="portfolio-single-1.html" class="work-ext-link">
-                        <div class="work-img">
-                            <img class="work-img" src="{{ asset('bundles/app/images/portfolio/projects-3.jpg') }}" alt="Work" />
-                        </div>
-                        <div class="work-intro">
-                            <h3 class="work-title">Boy in T-shirt</h3>
-                            <div class="work-descr">
-                                External Page
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- End Work Item -->
-
-                <!-- Work Item (External Page) -->
-                <li class="work-item mix anniversary kids">
-                    <a href="portfolio-single-1.html" class="work-ext-link">
-                        <div class="work-img">
-                            <img class="work-img" src="{{ asset('bundles/app/images/portfolio/projects-4.jpg') }}" alt="Work" />
-                        </div>
-                        <div class="work-intro">
-                            <h3 class="work-title">Space</h3>
-                            <div class="work-descr">
-                                External Page
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- End Work Item -->
-
-                <!-- Work Item (External Page) -->
-                <li class="work-item mix anniversary">
-                    <a href="portfolio-single-1.html" class="work-ext-link">
-                        <div class="work-img">
-                            <img class="work-img" src="{{ asset('bundles/app/images/portfolio/projects-5.jpg') }}" alt="Work" />
-                        </div>
-                        <div class="work-intro">
-                            <h3 class="work-title">Model</h3>
-                            <div class="work-descr">
-                                External Page
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- End Work Item -->
-
-                <!-- Work Item (Lightbox) -->
-                <li class="work-item mix anniversary wedding">
-                    <a href="{{ asset('bundles/app/images/portfolio/weddings/freeman/freeman0.jpg') }}" class="work-lightbox-link mfp-image">
-                        <div class="work-img">
-                            <img src="{{ asset('bundles/app/images/portfolio/projects-6.jpg') }}" alt="Work" />
-                        </div>
-                        <div class="work-intro">
-                            <h3 class="work-title">Young Man</h3>
-                            <div class="work-descr">
-                                Lightbox
-                            </div>
-                        </div>
-                    </a>
-                </li>
                 <!-- End Work Item -->
 
             </ul>

@@ -324,7 +324,14 @@
             },
             mainClass: "mfp-fade"
         });
-        
+
+        // Works Item Lightbox	
+        $(".lightbox-gallery-0").magnificPopup({
+            gallery: {
+                enabled: true
+            }
+        });
+
         // Works Item Lightbox	
         $(".lightbox-gallery-1").magnificPopup({
             gallery: {
@@ -339,6 +346,42 @@
             }
         });
         $(".lightbox-gallery-3").magnificPopup({
+            gallery: {
+                enabled: true
+            }
+        });
+
+        $(".lightbox-gallery-4").magnificPopup({
+            gallery: {
+                enabled: true
+            }
+        });
+
+        $(".lightbox-gallery-5").magnificPopup({
+            gallery: {
+                enabled: true
+            }
+        });
+
+	$(".lightbox-gallery-6").magnificPopup({
+            gallery: {
+                enabled: true
+            }
+        });
+
+	$(".lightbox-gallery-7").magnificPopup({
+            gallery: {
+                enabled: true
+            }
+        });
+
+	$(".lightbox-gallery-8").magnificPopup({
+            gallery: {
+                enabled: true
+            }
+        });
+
+	$(".lightbox-gallery-9").magnificPopup({
             gallery: {
                 enabled: true
             }

@@ -23,7 +23,7 @@ class IndexController extends Controller
         #dump($events);die;
 
         return $this->render('AppBundle:index:index.html.twig', [
-            #'events' => $events
+            'events' => $events
         ]);
     }
 }

@@ -45,7 +45,7 @@
 
 
             <!-- Slide Item -->
-            <section class="home-section bg-scroll bg-dark-alfa-30" data-background="{{ asset('bundles/app/images/full-width-images/section-bg-6.jpg') }}">
+            <section class="home-section bg-scroll bg-dark-alfa-30" data-background="{{ asset('bundles/app/images/portfolio/frontpage/tulip_flowers-1920x1080.jpg') }}">
                 <div class="js-height-full container">
 
                     <!-- Hero Content -->
@@ -75,7 +75,7 @@
             <!-- End Slide Item -->
 
             <!-- Slide Item -->
-            <section class="home-section bg-scroll bg-dark-alfa-50" data-background="{{ asset('bundles/app/images/full-width-images/section-bg-10.jpg') }}">
+            <section class="home-section bg-scroll bg-dark-alfa-50" data-background="{{ asset('bundles/app/images/portfolio/frontpage/tulips_garden-1920x1080.jpg') }}">
                 <div class="js-height-full container">
 
                     <!-- Hero Content -->
@@ -105,7 +105,7 @@
             <!-- End Slide Item -->
 
             <!-- Slide Item -->
-            <section class="home-section bg-scroll bg-dark-alfa-30" data-background="{{ asset('bundles/app/images/full-width-images/section-bg-9.jpg') }}">
+            <section class="home-section bg-scroll bg-dark-alfa-30" data-background="{{ asset('bundles/app/images/portfolio/frontpage/tulips_in_bloom-1920x1080.jpg') }}">
                 <div class="js-height-full container">
 
                     <!-- Hero Content -->
@@ -159,12 +159,12 @@
                     <!-- Main Menu -->
                     <div class="inner-nav desktop-nav">
                         <ul class="clearlist scroll-nav local-scroll">
-                            <li class="active"><a href="#home">Home</a></li>
-                            <li><a href="#about">О нас</a></li>
-                            <li><a href="#services">Услуги</a></li>
-                            <li><a href="#portfolio">Портфолио</a></li>
-                            <li><a href="#news">Новости</a></li>
-                            <li><a href="#contact">Контакты</a></li>
+                            <li class="active"><a href="{{ path('homepage') }}#home">Home</a></li>
+                            <li><a href="{{ path('homepage') }}#about">О нас</a></li>
+                            <li><a href="{{ path('homepage') }}#services">Услуги</a></li>
+                            <li><a href="{{ path('homepage') }}#portfolio">Портфолио</a></li>
+                            <li><a href="{{ path('homepage') }}#news">Новости</a></li>
+                            <li><a href="{{ path('homepage') }}#contact">Контакты</a></li>
 
                         </ul>
                     </div>

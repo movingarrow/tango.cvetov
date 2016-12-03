@@ -456,7 +456,7 @@
         <div class="relative">
 
             <h2 class="section-title font-alt mb-70 mb-sm-40">
-                Portfolio
+                <a href="{{ path('portfolio') }}">ПОРТФОЛИО</a>
             </h2>
 
             <div class="container">
@@ -476,10 +476,10 @@
 
             <!-- Works Filter -->
             <div class="works-filter font-alt align-center">
-                <a href="#" class="filter active" data-filter="*">All works</a>
-                <a href="#branding" class="filter" data-filter=".branding">Branding</a>
-                <a href="#design" class="filter" data-filter=".design">Design</a>
-                <a href="#photography" class="filter" data-filter=".photography">Photography</a>
+                <a href="#" class="filter active" data-filter="*">Все Работы</a>
+                <a href="#wedding" class="filter" data-filter=".wedding">Свадьбы</a>
+                <a href="#anniversary" class="filter" data-filter=".anniversary">Юбилей</a>
+                <a href="#kids" class="filter" data-filter=".kids">Детские Праздники</a>
             </div>
             <!-- End Works Filter -->
 
@@ -487,100 +487,26 @@
             <ul class="works-grid work-grid-3 work-grid-gut clearfix font-alt hover-white hide-titles" id="work-grid">
 
                 <!-- Work Item (Lightbox) -->
-                <li class="work-item mix photography">
-                    <a href="{{ asset('bundles/app/images/portfolio/full-project-1.jpg') }}" class="work-lightbox-link mfp-image">
-                        <div class="work-img">
-                            <img src="{{ asset('bundles/app/images/portfolio/projects-1.jpg') }}" alt="Work" />
-                        </div>
-                        <div class="work-intro">
-                            <h3 class="work-title">Portrait</h3>
-                            <div class="work-descr">
-                                Lightbox
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- End Work Item -->
-
-                //, {'eventName': events.name})
-                <!-- Work Item (External Page) -->
-                <li class="work-item mix branding design">
-                    <a href="{{ path('portfolio') }}" class="work-ext-link">
-                        <div class="work-img">
-                            <img class="work-img" src="{{ asset('bundles/app/images/portfolio/projects-2.jpg') }}" alt="Work" />
-                        </div>
-                        <div class="work-intro">
-                            <h3 class="work-title">Vase 3D</h3>
-                            <div class="work-descr">
-                                External Page
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- End Work Item -->
-
-                <!-- Work Item (External Page) -->
-                <li class="work-item mix branding">
-                    <a href="portfolio-single-1.html" class="work-ext-link">
-                        <div class="work-img">
-                            <img class="work-img" src="{{ asset('bundles/app/images/portfolio/projects-3.jpg') }}" alt="Work" />
-                        </div>
-                        <div class="work-intro">
-                            <h3 class="work-title">Boy in T-shirt</h3>
-                            <div class="work-descr">
-                                External Page
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- End Work Item -->
-
-                <!-- Work Item (External Page) -->
-                <li class="work-item mix design photography">
-                    <a href="portfolio-single-1.html" class="work-ext-link">
-                        <div class="work-img">
-                            <img class="work-img" src="{{ asset('bundles/app/images/portfolio/projects-4.jpg') }}" alt="Work" />
-                        </div>
-                        <div class="work-intro">
-                            <h3 class="work-title">Space</h3>
-                            <div class="work-descr">
-                                External Page
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- End Work Item -->
-
-                <!-- Work Item (External Page) -->
-                <li class="work-item mix design">
-                    <a href="portfolio-single-1.html" class="work-ext-link">
-                        <div class="work-img">
-                            <img class="work-img" src="{{ asset('bundles/app/images/portfolio/projects-5.jpg') }}" alt="Work" />
-                        </div>
-                        <div class="work-intro">
-                            <h3 class="work-title">Model</h3>
-                            <div class="work-descr">
-                                External Page
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- End Work Item -->
-
-                <!-- Work Item (Lightbox) -->
-                <li class="work-item mix design branding">
-                    <a href="{{ asset('bundles/app/images/portfolio/full-project-3.jpg') }}" class="work-lightbox-link mfp-image">
-                        <div class="work-img">
-                            <img src="{{ asset('bundles/app/images/portfolio/projects-6.jpg') }}" alt="Work" />
-                        </div>
-                        <div class="work-intro">
-                            <h3 class="work-title">Young Man</h3>
-                            <div class="work-descr">
-                                Lightbox
-                            </div>
-                        </div>
-                    </a>
-                </li>
+                {% for key, event in events %}
+                    <li class="work-item mix {{  event.category.name|lower }}">
+                        {% for image in event.photo %}
+                            <a href="{{ asset( image.name ) }}" class="lightbox-gallery-{{ key }} mfp-image">
+                                <div class="work-img">
+                                    <img  {% if loop.index != 1 %} style="display:none" {% endif %}  src="{{ asset( image.name ) }}" alt="Work"  />
+                                </div>
+                                <div class="work-intro">
+                                    <h3 class="work-title">{{ event.name }}</h3>
+                                    <div class="work-descr">
+                                        {{  event.category.name }}
+                                    </div>
+                                    <div class="work-comment">
+                                        {% for comment in event.comment %} "{{ comment.comment }}" {% endfor %}
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </li>
+                {% endfor %}
                 <!-- End Work Item -->
 
             </ul>

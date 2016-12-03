@@ -29,17 +29,17 @@ class PortfolioController extends Controller
     }
 
     /**
-     * @Route("/show/{eventName}", name="single_event_show")
+     * @Route("/show/{eventId}", name="single_event_show")
      */
     public function showAction($eventId)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $events = $em->getRepository('AppBundle\Entity\Event')
-            ->findOneBy($eventId);
+        $event = $em->getRepository('AppBundle\Entity\Event')
+            ->findOneBy(['id' => $eventId]);
 
         return $this->render('AppBundle:portfolio:show.html.twig', [
-            'events' => $events
+            'event' => $event
         ]);
     }
 }
