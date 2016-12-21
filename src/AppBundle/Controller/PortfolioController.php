@@ -2,8 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\CommentFormType;
+use AppBundle\Entity\Event;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -31,15 +34,37 @@ class PortfolioController extends Controller
     /**
      * @Route("/show/{eventId}", name="single_event_show")
      */
-    public function showAction($eventId)
+    public function showAction($eventId, Request $request)
     {
+
+
         $em = $this->getDoctrine()->getManager();
 
         $event = $em->getRepository('AppBundle\Entity\Event')
             ->findOneBy(['id' => $eventId]);
 
+        $form = $this->createForm(CommentFormType::class);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment = $form->getData();
+            $comment->setEvent($event);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash('success', 'Комментарий отправлен!');
+
+            return $this->redirectToRoute('single_event_show', ['eventId'=>$eventId]);
+
+        }
+
         return $this->render('AppBundle:portfolio:show.html.twig', [
-            'event' => $event
+            'event' => $event,
+            'commentForm' => $form->createView()
         ]);
     }
 }
