@@ -32,6 +32,10 @@ class User extends BaseUser
      */
     private $facebookId;
 
+    /**
+     * @var string $facebookAccessToken
+     * @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true)
+     */
     private $facebookAccessToken;
 
     /**

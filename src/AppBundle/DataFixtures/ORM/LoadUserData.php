@@ -31,18 +31,18 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, OrderedF
 
 
 
-        for($i = 0; $i < 100; $i++) {
-            $user = new User();
-            $user->setUsername('admin' . $i);
-            $user->setPassword('test' . $i);
-            $user->setEmail('test'. $i .'@test.kg');
-            $this->addReference('admin' . $i, $user);
-            $manager->persist($user);
-        }
-
-
-
-        $manager->flush();
+//        for($i = 0; $i < 100; $i++) {
+//            $user = new User();
+//            $user->setUsername('admin' . $i);
+//            $user->setPassword('test' . $i);
+//            $user->setEmail('test'. $i .'@test.kg');
+//            $this->addReference('admin' . $i, $user);
+//            $manager->persist($user);
+//        }
+//
+//
+//
+//        $manager->flush();
     }
 
     /**

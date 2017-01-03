@@ -1,0 +1,201 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+<form action="{{ path("fos_user_security_check") }}" method="post">
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+    {#<div>#}
+        {#<p></p>#}
+    {#</div>#}
+    {#<div class="form-group">#}
+    {#<label for="username">{{ 'security.login.username'|trans }}</label>#}
+    {#<input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />#}
+    {#</div>#}
+
+    {#<div class="form-group">#}
+    {#<label for="password">{{ 'security.login.password'|trans }}</label>#}
+    {#<input type="password" id="password" name="_password" required="required" />#}
+    {#</div>#}
+
+    {#<div class="form-group">#}
+    {#<input type="checkbox" id="remember_me" name="_remember_me" value="on" />#}
+    {#<label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>#}
+    {#</div>#}
+
+{#<input type="submit"#}
+       {#class="btn btn-success"#}
+       {#id="_submit"#}
+       {#name="_submit"#}
+       {#value="{{ 'security.login.submit'|trans }}" />#}
+
+
+    <!-- Section -->
+    <section class="page-section">
+        <div class="container relative">
+
+            <!-- Nav Tabs -->
+            <div class="align-center mb-40 mb-xxs-30">
+                <ul class="nav nav-tabs tpl-minimal-tabs">
+
+                    <li class="active">
+                        <a href="#mini-one" data-toggle="tab">Login</a>
+                    </li>
+
+                    <li>
+                        <a href="#mini-two" data-toggle="tab">Registration</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- End Nav Tabs -->
+
+            <!-- Tab panes -->
+            <div class="tab-content tpl-minimal-tabs-cont section-text">
+
+                <div class="tab-pane fade in active" id="mini-one">
+
+                    <!-- Login Form -->
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+
+                            <form class="form contact-form" id="contact_form">
+                                <div class="clearfix">
+
+                                    <!-- Username -->
+                                    <div class="form-group">
+                                        <input type="text" name="_username" id="username" value="{{ last_username }}" class="input-md round form-control" placeholder="Username" required>
+                                    </div>
+
+                                    <!-- Password -->
+                                    <div class="form-group">
+                                        <input type="password" name="_password" id="password" class="input-md round form-control" placeholder="Password" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="clearfix">
+
+                                    <div class="cf-left-col">
+
+                                        <!-- Inform Tip -->
+                                        <div class="form-tip pt-20">
+                                            <a href="{{ path('fos_user_resetting_request') }}">Forgot Password?</a>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="cf-right-col">
+
+                                        <!-- Send Button -->
+                                        <div class="align-right pt-10">
+                                            <button class="submit_btn btn btn-mod btn-medium btn-round" id="login-btn" value="{{ 'security.login.submit'|trans }}" >Login</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                    <!-- End Login Form -->
+
+                </div>
+</form>
+                <div class="tab-pane fade" id="mini-two">
+
+                    <!-- Registry Form -->
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+
+                            {#<form class="form contact-form" id="contact_form">#}
+                                {#<div class="clearfix">#}
+
+
+                                    <form name="fos_user_registration_form" method="post" action="{{ path('fos_user_registration_register') }}" class="fos_user_registration_register">
+
+                                        {#{{ form_errors(form) }}#}
+                                        {#{{ form_widget(form._token) }}#}
+
+                                        <div id="fos_user_registration_form">
+
+                                            <div class="form-group">
+                                                {#<label class="control-label required" for="fos_user_registration_form_email">Email</label>#}
+                                                <input type="email" id="fos_user_registration_form_email" name="fos_user_registration_form[email]" required="required" class="input-md round form-control" placeholder="Email" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                {#<label class="control-label required" for="fos_user_registration_form_username">Username</label>#}
+                                                <input type="text" id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" maxlength="255" pattern=".{2,}" class="input-md round form-control" placeholder="Username" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                {#<label class="control-label required" for="fos_user_registration_form_plainPassword_first">Password</label>#}
+                                                <input type="password" id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" required="required" class="input-md round form-control" placeholder="Password" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                {#<label class="control-label required" for="fos_user_registration_form_plainPassword_second">Repeat password</label>#}
+                                                <input type="password" id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required" class="input-md round form-control" placeholder="Re-enter Password" />
+                                            </div>
+
+                                            <input type="hidden" id="fos_user_registration_form__token" name="fos_user_registration_form[_token]" value="{{ csrf_token }}" />
+
+                                        </div>
+                                        {{ dump() }}
+                                        <div>
+                                            <button class="submit_btn btn btn-mod btn-medium btn-round btn-full" id="reg-btn" value="{{ 'registration.submit'|trans }}">Register</button>
+                                            {#<input type="submit" value="Register" />#}
+                                        </div>
+                                    </form>
+
+
+                                    {#<!-- Email -->#}
+                                    {#<div class="form-group">#}
+                                        {#<input type="text" name="Email" id="Email" class="input-md round form-control" placeholder="Email" required>#}
+                                    {#</div>#}
+
+                                    {#<!-- Username -->#}
+                                    {#<div class="form-group">#}
+                                        {#<input type="text" name="username" id="username" class="input-md round form-control" placeholder="Username" required>#}
+                                    {#</div>#}
+
+                                    {#<!-- Password -->#}
+                                    {#<div class="form-group">#}
+                                        {#<input type="password" name="password" id="password" class="input-md round form-control" placeholder="Password" required>#}
+                                    {#</div>#}
+
+                                    {#<!-- Re-enter Password -->#}
+                                    {#<div class="form-group">#}
+                                        {#<input type="password" name="re-password" id="re-password" class="input-md round form-control" placeholder="Re-enter Password" required>#}
+                                    {#</div>#}
+
+                                {#</div>#}
+
+                                {#<!-- Send Button -->#}
+                                {#<div class="pt-10">#}
+                                    {#<button class="submit_btn btn btn-mod btn-medium btn-round btn-full" id="reg-btn">Register</button>#}
+                                {#</div>#}
+
+                            {#</form>#}
+
+                        </div>
+                    </div>
+                    <!-- End Registry Form -->
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- End Section -->
+
