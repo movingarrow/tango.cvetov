@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Byadmin - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="Bylancer">
+    <meta name="keyword" content="Byadmin, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href="{{ asset('bundles/admin/img/favicon.png') }}">
+
+    <title>Login Page 2 | Byadmin - Bootstrap 3 Responsive Admin Template</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="{{ asset('bundles/admin/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="{{ asset('bundles/admin/css/bootstrap-theme.css') }}" rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href="{{ asset('bundles/admin/css/elegant-icons-style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('bundles/admin/assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
+    <!-- Custom styles -->
+    <link href="{{ asset('bundles/admin/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/admin/css/style-responsive.css') }}" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+    <!--[if lt IE 9]>
+    <script src="{{ asset('bundles/admin/js/html5shiv.js') }}"></script>
+    <script src="{{ asset('bundles/admin/js/respond.min.js') }}"></script>
+    <![endif]-->
+</head>
+
+<body class="login-img2-body">
+
+<div class="container">
+
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+
+    <form class="login-form" action="{{ path('admin_login') }}" method="post">
+        <div class="login-wrap">
+            <p class="login-img"><i class="icon_lock_alt"></i></p>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_profile"></i></span>
+                <input type="text" class="form-control" placeholder="Username" id="username" name="_username" value="{{ last_username }}" autofocus>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                <input type="password" class="form-control" placeholder="Password" id="password" name="_password">
+            </div>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                {#
+                    If you want to control the URL the user
+                    is redirected to on success (more details below)
+                    <input type="hidden" name="_target_path" value="/account" />
+                #}
+
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me"> Remember me
+                <span class="pull-right"> <a href="recoverpw.html"> Forgot Password?</a></span>
+            </label>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+            {#<button class="btn btn-info btn-lg btn-block" type="submit">Signup</button>#}
+
+        </div>
+    </form>
+
+</div>
+
+
+</body>
+
+
+</html>

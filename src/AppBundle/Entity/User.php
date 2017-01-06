@@ -62,6 +62,12 @@ class User extends BaseUser
         return $this->id;
     }
 
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+
     /**
      * Set createdAt
      *

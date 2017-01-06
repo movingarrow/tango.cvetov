@@ -28,14 +28,33 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_USER:  ROLE_USER
+        ROLE_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
+        in_memory:
+            memory:
+                users:
+                    admin:
+                        password: qwer
+                        roles: 'ROLE_ADMIN'
 
     firewalls:
+        admin_secured_area:
+            pattern:   ^/admin
+            anonymous: ~
+            provider: in_memory
+            form_login:
+                login_path: /admin/login
+                check_path: /admin/login_check
+                default_target_path: /admin
+                csrf_token_generator: security.csrf.token_manager
+            logout:
+                path:   /admin/logout
+                target: /
+
         main:
             pattern: ^/
             form_login:
@@ -73,4 +92,5 @@ security:
         - { path: ^/connect/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }

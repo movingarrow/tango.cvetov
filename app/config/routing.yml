@@ -3,6 +3,11 @@ user:
     type:     annotation
     prefix:   /user
 
+admin:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
@@ -34,3 +39,20 @@ custom_login:
 
 github_login:
     path: /login/check-github
+
+## Admin Login Form
+#fos_admin_user_security_login:
+#    path:  admin/login
+#    defaults: { _controller: FOSUserBundle:Security:login }
+#
+## Admin Login Verification
+#fos_admin_user_security_check:
+#    path:  admin/login_check
+#    defaults: { _controller: FOSUserBundle:Security:check }
+#    requirements:
+#        method: POST
+#
+## Logout Admin
+#fos_admin_user_security_logout:
+#    pattern:  admin/logout
+#    defaults: { _controller: FOSUserBundle:Security:logout }

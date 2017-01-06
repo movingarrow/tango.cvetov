@@ -1,9 +1,66 @@
 {% extends '::base.html.twig' %}
 
 {% block fullwidth_slider %}{% endblock fullwidth_slider %}
-{#{% block navigation_panel %}{% endblock navigation_panel %}#}
+
+ {% block navigation_panel %}
+         <!-- Navigation panel -->
+         <nav class="main-nav js-stick">
+                 <div class="full-wrapper relative clearfix">
+                         <!-- Logo ( * your text or image into link tag *) -->
+                         <div class="nav-logo-wrap local-scroll">
+                                 <a href="#top" class="logo">
+                                         <img src="{{ asset('bundles/app/images/logo-dark.png') }}" alt="" />
+                                 </a>
+                         </div>
+                         <div class="mobile-nav">
+                                 <i class="fa fa-bars"></i>
+                         </div>
+                         <!-- Main Menu -->
+                         <div class="inner-nav desktop-nav">
+                                 <ul class="clearlist scroll-nav local-scroll">
+                                         <li class="active"><a href="{{ path('homepage') }}">Home</a></li>
+                                         <li><a href="{{ path('homepage') }}#about">О нас</a></li>
+                                         <li><a href="{{ path('homepage') }}#services">Услуги</a></li>
+                                         <li><a href="#portfolio">Портфолио</a></li>
+                                         <li><a href="{{ path('homepage') }}#news">Новости</a></li>
+                                         <li><a href="{{ path('homepage') }}#contact">Контакты</a></li>
+
+                                 </ul>
+                         </div>
+                 </div>
+         </nav>
+         <!-- End Navigation panel -->
+ {% endblock navigation_panel %}
+
 
 {% block body %}
+
+        <!-- Head Section -->
+        <section class="small-section bg-dark-lighter">
+                <div class="relative container align-left">
+
+                        <div class="row">
+
+                                <div class="col-md-8">
+                                        <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">My Account</h1>
+                                        <div class="hs-line-4 font-alt">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        </div>
+                                </div>
+
+                                <div class="col-md-4 mt-30">
+                                        <div class="mod-breadcrumbs font-alt align-right">
+                                                <a href="{{ path('homepage') }}">Home</a>&nbsp;/&nbsp;<a href="#">Pages</a>&nbsp;/&nbsp;<span>{{ path('homepage') }}</span>
+                                        </div>
+
+                                </div>
+                        </div>
+
+                </div>
+        </section>
+        <!-- End Head Section -->
+
         {% block fos_user_content %}
         {% endblock fos_user_content %}
 {% endblock %}
+

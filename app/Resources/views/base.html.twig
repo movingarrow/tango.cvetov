@@ -36,8 +36,39 @@
 
     </head>
 {% endblock head %}
+<body>
 
-    <body>
+{% block navigation_panel %}
+    <!-- Navigation panel -->
+    <nav class="main-nav dark transparent stick-fixed">
+        <div class="full-wrapper relative clearfix">
+            <!-- Logo ( * your text or image into link tag *) -->
+            <div class="nav-logo-wrap local-scroll">
+                <a href="#top" class="logo">
+                    <img src="{{ asset('bundles/app/images/logo-white.png') }}" alt="" />
+                </a>
+            </div>
+            <div class="mobile-nav">
+                <i class="fa fa-bars"></i>
+            </div>
+            <!-- Main Menu -->
+            <div class="inner-nav desktop-nav">
+                <ul class="clearlist scroll-nav local-scroll">
+                    <li class="active"><a href="{{ path('homepage') }}#home">Home</a></li>
+                    <li><a href="{{ path('homepage') }}#about">О нас</a></li>
+                    <li><a href="{{ path('homepage') }}#services">Услуги</a></li>
+                    <li><a href="{{ path('homepage') }}#portfolio">Портфолио</a></li>
+                    <li><a href="{{ path('homepage') }}#news">Новости</a></li>
+                    <li><a href="{{ path('homepage') }}#contact">Контакты</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navigation panel -->
+{% endblock navigation_panel %}
+
+
 
     {% block fullwidth_slider %}
         <!-- Fullwidth Slider -->
@@ -143,35 +174,7 @@
 
 
 
-        {% block navigation_panel %}
-            <!-- Navigation panel -->
-            <nav class="main-nav dark transparent stick-fixed">
-                <div class="full-wrapper relative clearfix">
-                    <!-- Logo ( * your text or image into link tag *) -->
-                    <div class="nav-logo-wrap local-scroll">
-                        <a href="#top" class="logo">
-                            <img src="{{ asset('bundles/app/images/logo-white.png') }}" alt="" />
-                        </a>
-                    </div>
-                    <div class="mobile-nav">
-                        <i class="fa fa-bars"></i>
-                    </div>
-                    <!-- Main Menu -->
-                    <div class="inner-nav desktop-nav">
-                        <ul class="clearlist scroll-nav local-scroll">
-                            <li class="active"><a href="{{ path('homepage') }}#home">Home</a></li>
-                            <li><a href="{{ path('homepage') }}#about">О нас</a></li>
-                            <li><a href="{{ path('homepage') }}#services">Услуги</a></li>
-                            <li><a href="{{ path('homepage') }}#portfolio">Портфолио</a></li>
-                            <li><a href="{{ path('homepage') }}#news">Новости</a></li>
-                            <li><a href="{{ path('homepage') }}#contact">Контакты</a></li>
 
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- End Navigation panel -->
-            {% endblock navigation_panel %}
 
 
 

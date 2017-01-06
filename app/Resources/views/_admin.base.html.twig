@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% block head %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Panel">
+    <meta name="author" content="Dmitry Sosedov">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="{{ asset('bundles/admin/asset/img/favicon.png') }}">
+
+    <title>{% block title %}Tango Cvetov Admin Panel{% endblock title %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="{{ asset('bundles/admin/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="{{ asset('bundles/admin/css/bootstrap-theme.css') }}" rel="stylesheet">
+    <!--external css-->
+
+    <!-- font icon -->
+    <link href="{{ asset('bundles/admin/css/elegant-icons-style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('bundles/admin/assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
+    <link href="{{ asset('bundles/admin/css/font-awesome.css" rel="stylesheet') }}" />
+    <!-- full calendar css-->
+    <link href="{{ asset('bundles/admin/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css') }}" rel="stylesheet" />
+    <!-- morris chart css-->
+    <link href="{{ asset('bundles/admin/assets/morris.js-0.4.3/morris.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/flexslider.css') }}" type="text/css" media="screen" />
+    <!-- Custom styles -->
+    <link href="{{ asset('bundles/admin/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/admin/css/style-responsive.css') }}" rel="stylesheet" />
+
+    <!--Animation css-->
+    <link href="{{ asset('bundles/admin/css/animate.min.css') }}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+    <!--[if lt IE 9]>
+    <script src="{{ asset('bundles/admin/js/html5shiv.js') }}"></script>
+    <script src="{{ asset('bundles/admin/js/respond.min.js') }}'"></script>
+    <script src="{{ asset('bundles/admin/js/lte-ie7.js') }}"></script>
+    <![endif]-->
+</head>
+
+{% endblock head %}
+
+
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+{{ include('@Admin/Index/header.html.twig') }}
+
+{{ include('@Admin/Index/sidebarMenu.html.twig') }}
+
+    <!--main content start-->
+    <section id="main-content" class="animated fadeIn" style="animation-duration: 2s; opacity: 1;">
+        <section class="wrapper">
+            <!--overview start-->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="panel">
+                        <div class="panel-body pad-20">
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <h3 class="nm"> <span class="timer" data-from="0" data-to="450" data-speed="5000" data-refresh-interval="50">450</span></h3>
+                                    <p>Total Orders</p>
+                                </div>
+                                <div class="col-xs-3"> <i class="fa fa-shopping-cart fa-3x text-info"></i> </div>
+                            </div>
+                            <div class="progress progress-striped progress-xs nm">
+                                <div style="width: 60%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" class="progress-bar"> <span class="sr-only">60% Complete</span> </div>
+                            </div>
+                            <p class="nm"> 4% higher than last month </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="panel">
+                        <div class="panel-body pad-20">
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <h3 class="nm"> <span class="timer" data-from="0" data-to="65" data-speed="5000" data-refresh-interval="50">65</span></h3>
+                                    <p>New Message</p>
+                                </div>
+                                <div class="col-xs-3"> <i class="fa fa-envelope fa-3x text-danger"></i> </div>
+                            </div>
+                            <div class="progress progress-striped progress-xs nm">
+                                <div style="width: 60%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" class="progress-bar progress-bar-danger"> <span class="sr-only">60% Complete</span> </div>
+                            </div>
+                            <p class="nm"> 4% higher than last month </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="panel widget">
+                        <div class="panel-body pad-20">
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <h3 class="nm"> <span class="timer" data-from="0" data-to="599" data-speed="5000" data-refresh-interval="50">599</span></h3>
+                                    <p>Registred users</p>
+                                </div>
+                                <div class="col-xs-3"> <i class="fa fa-users fa-3x text-success"></i> </div>
+                            </div>
+                            <div class="progress progress-striped progress-xs nm">
+                                <div style="width: 60%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" class="progress-bar progress-bar-success"> <span class="sr-only">60% Complete</span> </div>
+                            </div>
+                            <p class="nm"> 4% higher than last month </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="panel widget">
+                        <div class="panel-body pad-20">
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <h3 class="nm"> <span class="timer" data-from="0" data-to="65" data-speed="5000" data-refresh-interval="50">65</span>%</h3>
+                                    <p>Search Traffic</p>
+                                </div>
+                                <div class="col-xs-3"> <i class="fa fa-search fa-3x text-info"></i> </div>
+                            </div>
+                            <div class="progress progress-striped progress-xs nm">
+                                <div style="width: 60%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" class="progress-bar progress-bar-warning"> <span class="sr-only">60% Complete</span> </div>
+                            </div>
+                            <p class="nm"> 4% higher than last month </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--overview end-->
+
+            <!-- dashboard charts start -->
+            <div class="row">
+                <div class="col-md-8">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Jaguar 'E' Type vehicles in the UK
+                        </header>
+                        <div class="panel-body">
+                            <div id="hero-graph" class="graph"></div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-4">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            2016 Browser Statistics - Donut Chart
+                        </header>
+                        <div class="panel-body">
+                            <div id="hero-donut" class="graph"></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- dashboard charts end -->
+            <!-- project team & activity start -->
+            <div class="row">
+                <div class="col-lg-4">
+                    <!--project team start-->
+                    <section class="panel">
+                        <div class="panel-body project-team">
+                            <div class="task-progress">
+                                <h1>Project Team</h1>
+                            </div>
+                        </div>
+                        <table class="table table-hover personal-task">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <span class="profile-ava">
+                                        <img alt="" class="simple" src="{{ asset('bundles/admin/img/avatar1_small.jpg') }}">
+                                    </span>
+                                </td>
+                                <td>
+                                    <p class="profile-name">John Doe</p>
+                                    <p class="profile-occupation">UX Designer</p>
+                                </td>
+                                <td>
+                                    <span class="badge bg-important">75%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="profile-ava">
+                                        <img alt="" class="simple" src="{{ asset('bundles/admin/img/avatar-mini.jpg') }}">
+                                    </span>
+                                </td>
+                                <td>
+                                    <p class="profile-name">Rena Rios</p>
+                                    <p class="profile-occupation">UX Designer</p>
+                                </td>
+                                <td>
+                                    <span class="badge bg-success">43%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="profile-ava">
+                                        <img alt="" class="simple" src="{{ asset('bundles/admin/img/avatar-mini2.jpg') }}">
+                                    </span>
+                                </td>
+                                <td>
+                                    <p class="profile-name">Robin Mathis</p>
+                                    <p class="profile-occupation">UX Designer</p>
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">67%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="profile-ava">
+                                        <img alt="" class="simple" src="{{ asset('bundles/admin/img/avatar-mini3.jpg') }}">
+                                    </span>
+                                </td>
+                                <td>
+                                    <p class="profile-name">Bennie Gilliam</p>
+                                    <p class="profile-occupation">UX Designer</p>
+                                </td>
+                                <td>
+                                    <span class="badge bg-warning">30%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="profile-ava">
+                                        <img alt="" class="simple" src="{{ asset('bundles/admin/img/avatar-mini4.jpg') }}">
+                                    </span>
+                                </td>
+                                <td>
+                                    <p class="profile-name">Eddy Wilcox</p>
+                                    <p class="profile-occupation">UX Designer</p>
+                                </td>
+                                <td>
+                                    <span class="badge bg-primary">15%</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <!--Project Team end-->
+                </div>
+
+                <div class="col-lg-8">
+                    <!--Project Activity start-->
+                    <section class="panel">
+                        <div class="panel-body progress-panel">
+                            <div class="row">
+                                <div class="col-lg-8 task-progress pull-left">
+                                    <h1>Project Activity</h1>
+                                </div>
+                                <div class="col-lg-4">
+                                <span class="profile-ava pull-right">
+                                        <img alt="" class="simple" src="{{ asset('bundles/admin/img/avatar1_small.jpg') }}">
+                                        John Doe
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-hover personal-task">
+                            <tbody>
+                            <tr>
+                                <td>Today</td>
+                                <td>
+                                    Project SRS.
+                                </td>
+                                <td>
+                                    <span class="badge bg-important">Upload</span>
+                                </td>
+                                <td>
+                                    <span class="profile-ava">
+                                        <img alt="" class="simple" src="{{ asset('bundles/admin/img/avatar1_small.jpg') }}">
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Yesterday</td>
+                                <td>
+                                    Project Design Task
+                                </td>
+                                <td>
+                                    <span class="badge bg-success">Task</span>
+                                </td>
+                                <td>
+                                    <div id="work-progress2"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>21.10.16</td>
+                                <td>
+                                    Generate Invoice
+                                </td>
+                                <td>
+                                    <span class="badge bg-success">Task</span>
+                                </td>
+                                <td>
+                                    <div id="work-progress3"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>22.10.16</td>
+                                <td>
+                                    Project Testing
+                                </td>
+                                <td>
+                                    <span class="badge bg-primary">To-Do</span>
+                                </td>
+                                <td>
+                                      <span class="profile-ava">
+                                        <img alt="" class="simple" src="{{ asset('bundles/admin/img/avatar1_small.jpg') }}">
+                                      </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>24.10.16</td>
+                                <td>
+                                    Project Release Date
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">Milestone</span>
+                                </td>
+                                <td>
+                                    <div id="work-progress4"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>28.10.16</td>
+                                <td>
+                                    Project Release Date
+                                </td>
+                                <td>
+                                    <span class="badge bg-primary">To-Do</span>
+                                </td>
+                                <td>
+                                    <div id="work-progress5"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>28.10.16</td>
+                                <td>
+                                    Project Release Date
+                                </td>
+                                <td>
+                                    <span class="badge bg-primary">To-Do</span>
+                                </td>
+                                <td>
+                                    <div id="work-progress5"></div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <!--Project Activity end-->
+                </div>
+            </div>
+
+            <!-- project team & activity end -->
+
+            {#<div class="row">#}
+                {#<div class="col-lg-4 wow fadeInUp animated" data-wow-delay=".5s">#}
+                    {#<div col-lg-12>#}
+                        {#<section class="panel">#}
+                            {#<div class="social-ic">#}
+                                {#<h5>Any Friends Around?</h5>#}
+                                {#<p>connect with your social networks to know!</p>#}
+                                {#<div class="link">#}
+                                    {#<a href="#"><i class="fa fa-facebook"></i>Connect</a>#}
+                                    {#<a href="#" class="goo"><i class="fa fa-google-plus"></i>Connect</a>#}
+                                    {#<a  href="#" class="goo1"><i class="fa fa-twitter"></i>Connect</a>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</section>#}
+                    {#</div>#}
+                    {#<div col-lg-12>#}
+                        {#<section class="panel">#}
+                            {#<div class="sub-in">#}
+                                {#<h5 >Email Newsletter</h5>#}
+                                {#<form>#}
+                                    {#<input type="text"  value="E-mail address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail address';}">#}
+                                    {#<div class="submit">#}
+                                        {#<input type="submit" onclick="myFunction()" value="Sign in">#}
+                                    {#</div>#}
+                                    {#<div class="clearfix">#}
+                                    {#</div>#}
+                                {#</form>#}
+                            {#</div>#}
+                        {#</section>#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="col-lg-8 single-box wow animated" data-wow-delay=".5s">#}
+                    {#<section class="panel">#}
+                        {#<div class=" buying-top">#}
+                            {#<div class="flexslider">#}
+                                {#<ul class="slides">#}
+                                    {#<li data-thumb="{{ asset('bundles/admin/img/ss.jpg') }}">#}
+                                        {#<img src="{{ asset('bundles/admin/img/ss.jpg') }}" />#}
+                                    {#</li>#}
+                                    {#<li data-thumb="{{ asset('bundles/admin/img/ss1.jpg') }}">#}
+                                        {#<img src="{{ asset('bundles/admin/img/ss1.jpg') }}" />#}
+                                    {#</li>#}
+                                    {#<li data-thumb="{{ asset('bundles/admin/img/ss2.jpg') }}">#}
+                                        {#<img src="{{ asset('bundles/admin/img/ss2.jpg') }}" />#}
+                                    {#</li>#}
+                                    {#<li data-thumb="{{ asset('bundles/admin/img/ss3.jpg') }}">#}
+                                        {#<img src="{{ asset('bundles/admin/img/ss3.jpg') }}" />#}
+                                    {#</li>#}
+                                {#</ul>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</section>#}
+                {#</div>#}
+            {#</div>#}
+
+            <!-- calender & widgets start -->
+            {#<div class="row">#}
+                {#<div class="col-lg-8">#}
+                    {#<section class="panel">#}
+                        {#<div class="panel-body">#}
+                            {#<div id="calendar" class="has-toolbar"></div>#}
+                        {#</div>#}
+                    {#</section>#}
+                {#</div>#}
+                {#<div class="col-lg-4">#}
+
+                    {#<!--profile widget2 start-->#}
+                    {#<section class="panel profile-nav alt">#}
+                        {#<div class="profile-widget-img">#}
+                            {#<div class="user-heading alt bg-layer ">#}
+                                {#<a href="#">#}
+                                    {#<img alt="" src="{{ asset('bundles/admin/img/profile-avatar.jpg') }}">#}
+                                {#</a>#}
+                                {#<h1>Isabella</h1>#}
+                                {#<p>Isabella@Byadmin.com</p>#}
+                            {#</div>#}
+                        {#</div>#}
+
+                        {#<div class="weather-category profile-widget-data">#}
+                            {#<ul>#}
+                                {#<li class="active">#}
+                                    {#<h5>150</h5>#}
+                                    {#Photos#}
+                                {#</li>#}
+                                {#<li>#}
+                                    {#<h5>5400</h5>#}
+                                    {#Following#}
+                                {#</li>#}
+                                {#<li>#}
+                                    {#<h5>85000</h5>#}
+                                    {#Followers#}
+                                {#</li>#}
+                            {#</ul>#}
+                        {#</div>#}
+                    {#</section>#}
+                    {#<!--profile widget2 end-->#}
+
+                    {#<!--weather widget start-->#}
+                    {#<section class="panel">#}
+                        {#<div class="weather-bg-img">#}
+                            {#<div class="panel-body">#}
+                                {#<div class="row">#}
+                                    {#<div class="col-xs-6">#}
+                                        {#<h3>London</h3>#}
+                                        {#<i class="icon-cloud"></i>#}
+                                        {#<span>24/10/2016</span>#}
+                                    {#</div>#}
+                                    {#<div class="col-xs-6">#}
+                                        {#<div class="degree">#}
+                                            {#20°#}
+                                        {#</div>#}
+                                        {#<div class="weather-type">#}
+                                            {#Sunny#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                {#</div>#}
+                                {#<div class="weather-category">#}
+                                    {#<ul>#}
+                                        {#<li class="active">#}
+                                            {#<h5>humidity</h5>#}
+                                            {#56%#}
+                                        {#</li>#}
+                                        {#<li>#}
+                                            {#<h5>precip</h5>#}
+                                            {#1.50 in#}
+                                        {#</li>#}
+                                        {#<li>#}
+                                            {#<h5>winds</h5>#}
+                                            {#10 mph#}
+                                        {#</li>#}
+                                    {#</ul>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+
+                        {#<footer class="weather-days weather-bg-img">#}
+                            {#<ul>#}
+                                {#<li class="day1">#}
+                                    {#<h5>Thu</h5>#}
+                                    {#20°#}
+                                {#</li>#}
+                                {#<li class="day2">#}
+                                    {#<h5>Fri</h5>#}
+                                    {#22°#}
+                                {#</li>#}
+                                {#<li class="day3">#}
+                                    {#<h5>Sat</h5>#}
+                                    {#21°#}
+                                {#</li>#}
+                                {#<li class="day4">#}
+                                    {#<h5>Sun</h5>#}
+                                    {#24°#}
+                                {#</li>#}
+                                {#<li class="day5">#}
+                                    {#<h5>Mon</h5>#}
+                                    {#20°#}
+                                {#</li>#}
+                                {#<li class="day6">#}
+                                    {#<h5>Wed</h5>#}
+                                    {#20°#}
+                                {#</li>#}
+                            {#</ul>#}
+                        {#</footer>#}
+                    {#</section>#}
+                    {#<!--weather widget end-->#}
+
+                {#</div>#}
+            {#</div>#}
+            <!-- calender & widgets end -->
+
+
+
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section start -->
+
+{% block javascripts %}
+<!-- javascripts -->
+<script src="{{ asset('bundles/admin/js/jquery.js') }}"></script>
+<script src="{{ asset('bundles/admin/js/jquery-1.8.3.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/admin/js/jquery-ui-1.9.2.custom.min.js') }}"></script>
+<!-- bootstrap -->
+<script src="{{ asset('bundles/admin/js/bootstrap.min.js') }}"></script>
+<!-- nice scroll -->
+<script src="{{ asset('bundles/admin/js/jquery.scrollTo.min.js') }}"></script>
+<script src="{{ asset('bundles/admin/js/jquery.nicescroll.js" type="text/javascript') }}"></script>
+
+<!--<script src="js/morris-script.js"></script>-->
+<!-- jQuery full calendar -->
+<script src="{{ asset('bundles/admin/assets/fullcalendar/fullcalendar/fullcalendar.min.js') }}"></script>
+<!--script for this page only-->
+<script src="{{ asset('bundles/admin/js/calendar-custom.js') }}"></script>
+<!-- custom select -->
+<script src="{{ asset('bundles/admin/js/jquery.customSelect.min.js') }}" ></script>
+<!--custome script for all page-->
+<script src="{{ asset('bundles/admin/js/scripts.js') }}"></script>
+<!-- custom script for this page-->
+<!-- charts scripts -->
+<script src="{{ asset('bundles/admin/assets/morris.js-0.4.3/morris.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('bundles/admin/assets/morris.js-0.4.3/raphael-min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('bundles/admin/assets/chart-master/Chart.js') }}"></script>
+<!-- custom chart script for this page only-->
+<script src="{{ asset('bundles/admin/js/morris-script.js') }}"></script>
+<!---->
+<script defer src="{{ asset('bundles/admin/js/jquery.flexslider.js') }}"></script>
+<script>
+    // Can also be used with $(document).ready()
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            controlNav: "thumbnails"
+        });
+    });
+</script>
+{% endblock javascripts %}
+
+
+</body>
+
+</html>
