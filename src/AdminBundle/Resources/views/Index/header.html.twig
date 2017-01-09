@@ -252,7 +252,12 @@
                         <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
                     </li>
                 </ul>
-            </li>
+                {% if is_granted('ROLE_USER') %}
+                <li><a href="{{ path('admin_logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ path('admin_login') }}">Login</a></li>
+                {% endif %}
+                </li>
             <!-- user login dropdown end -->
         </ul>
         <!-- notificatoin dropdown end-->

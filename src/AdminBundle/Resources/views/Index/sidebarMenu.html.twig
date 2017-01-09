@@ -5,15 +5,15 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
             <li class="active">
-                <a class="" href="index-2.html">
+                <a class="" href="{{ path('admin_index') }}">
                     <i class="icon_house_alt"></i>
-                    <span>Dashboard</span>
+                    <span>Tango Dashboard</span>
                 </a>
             </li>
             <li class="sub-menu">
-                <a href="javascript:;" class="">
+                <a href="{{ path('admin_user_list') }}" class="">
                     <i class="icon_ribbon_alt"></i>
-                    <span>Basic UI Elements</span>
+                    <span>Registered User List</span>
                     <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
                 <ul class="sub">
@@ -30,9 +30,9 @@
                 </ul>
             </li>
             <li class="sub-menu">
-                <a href="javascript:;" class="">
+                <a href="{{ path('admin_comment_list') }}" class="">
                     <i class="icon_desktop"></i>
-                    <span>Advance UI Elements</span>
+                    <span>Comments List</span>
                     <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
                 <ul class="sub">

@@ -26,20 +26,24 @@ security:
 
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
+        Symfony\Component\Security\Core\User\User: bcrypt
 
     role_hierarchy:
         ROLE_USER:  ROLE_USER
         ROLE_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        fos_userbundle:
-            id: fos_user.user_provider.username
+        chain_provider:
+            chain:
+                providers: [in_memory, fos_userbundle]
         in_memory:
             memory:
                 users:
                     admin:
-                        password: qwer
+                        password: $2y$12$VRfEueeT9UiWd6OGHhkTp.c61GknmRzrm.ZV1Pi7mhsYfARAolrYW
                         roles: 'ROLE_ADMIN'
+        fos_userbundle:
+                    id: fos_user.user_provider.username
 
     firewalls:
         admin_secured_area:
@@ -48,12 +52,12 @@ security:
             provider: in_memory
             form_login:
                 login_path: /admin/login
-                check_path: /admin/login_check
+                check_path: /admin/login
                 default_target_path: /admin
                 csrf_token_generator: security.csrf.token_manager
             logout:
                 path:   /admin/logout
-                target: /
+                target: /admin
 
         main:
             pattern: ^/

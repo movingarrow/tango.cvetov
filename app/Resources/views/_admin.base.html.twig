@@ -55,9 +55,17 @@
 
 {{ include('@Admin/Index/sidebarMenu.html.twig') }}
 
+
     <!--main content start-->
     <section id="main-content" class="animated fadeIn" style="animation-duration: 2s; opacity: 1;">
         <section class="wrapper">
+            {% for msg in app.session.flashBag.get('success') %}
+                <div class="alert alert-success">
+                    {{ msg }}
+                </div>
+            {% endfor %}
+
+            {% block body %}
             <!--overview start-->
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -528,13 +536,13 @@
             {#</div>#}
             <!-- calender & widgets end -->
 
-
-
+        {% endblock body %}
         </section>
     </section>
     <!--main content end-->
 </section>
 <!-- container section start -->
+
 
 {% block javascripts %}
 <!-- javascripts -->

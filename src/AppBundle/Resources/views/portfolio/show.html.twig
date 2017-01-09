@@ -224,7 +224,7 @@
 
             </div>
 
-
+            {# ----------------------- Comment form starts here #}
             <!-- Divider -->
             <hr class="mb-70 mb-xs-30"/>
             <!-- End Divider -->
@@ -259,6 +259,7 @@
 
 
 
+            {% if is_granted('ROLE_USER') %}
             <div class="section-text mb-60 mb-sm-40">
 
                 <div class="row">
@@ -273,6 +274,9 @@
                         {{ form_end(commentForm) }}
                     </div>
                 </div>
+            {% endif %}
+
+            {# ----------------------- Comment form ends here #}
 
                 {#<div class="row">#}
 

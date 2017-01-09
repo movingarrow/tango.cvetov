@@ -1,0 +1,12 @@
+{{ form_start(userForm) }}
+
+    {{ form_errors(userForm) }}
+
+    {{ form_row(userForm.username) }}
+    {{ form_row(userForm.email) }}
+    {{ form_row(userForm.isActive) }}
+
+
+
+<button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+{{ form_end(userForm) }}

@@ -53,6 +53,11 @@ class User extends BaseUser
     private $updatedAt;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isActive = true;
+
+    /**
      * Get id
      *
      * @return integer
@@ -173,4 +178,22 @@ class User extends BaseUser
     {
         return $this->facebookAccessToken;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param mixed $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+
 }

@@ -12,13 +12,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * @Route("/login")
- */
+
 class SecurityController extends Controller
 {
     /**
-     * @Route("", name="admin_login")
+     * @Route("/login", name="admin_login")
      */
     public function loginAction(Request $request)
     {
@@ -28,13 +26,21 @@ class SecurityController extends Controller
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
         return $this->render(
-            'AdminBundle:Login:login.html.twig',
+            'AdminBundle:Security:login.html.twig',
             array(
                 // last username entered by the user
                 'last_username' => $lastUsername,
                 'error'         => $error,
             )
         );
-
     }
+
+    /**
+     * @Route("/logout", name="admin_logout")
+     */
+    public function logoutAction()
+    {
+        throw new \Exception('this should not be reached!');
+    }
+
 }

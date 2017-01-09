@@ -40,12 +40,15 @@ custom_login:
 github_login:
     path: /login/check-github
 
-## Admin Login Form
+#logout:
+#    path: admin/logout
+
+## Admin Security Form
 #fos_admin_user_security_login:
 #    path:  admin/login
 #    defaults: { _controller: FOSUserBundle:Security:login }
 #
-## Admin Login Verification
+## Admin Security Verification
 #fos_admin_user_security_check:
 #    path:  admin/login_check
 #    defaults: { _controller: FOSUserBundle:Security:check }
