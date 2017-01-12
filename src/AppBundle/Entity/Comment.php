@@ -39,6 +39,12 @@ class Comment
     private $event;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="comment", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
+    private $user;
+
+    /**
      * @var \DateTime $createdAt
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -157,6 +163,26 @@ class Comment
     {
         return $this->event;
     }
+
+    /**
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return User
+     */
+    public function setUser(\AppBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
+
 
     /**
      * before persist or update call the updatedTimestamps() function.

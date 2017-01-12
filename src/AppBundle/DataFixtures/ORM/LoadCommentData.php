@@ -16,14 +16,51 @@ class LoadCommentData extends AbstractFixture implements FixtureInterface, Order
     {
         #$objects = Fixtures::load(__DIR__.'/fixtures.yml', $manager);
 
-        #var_dump('1');exit;
-
         $comment = new Comment();
         $comment->setComment('Awesome! Hi Five! OutStanding!');
 
         $comment->setEvent($this->getReference('Freeman\'s Wedding'));
+        $comment->setUser($this->getReference('dima'));
 
         $manager->persist($comment);
+
+        /****************************************/
+
+        $comment = new Comment();
+        $comment->setComment('Круто!! Так держать пацаны!!!');
+
+        $comment->setEvent($this->getReference('Shusharin\'s Wedding'));
+        $comment->setUser($this->getReference('polina'));
+
+        $manager->persist($comment);
+
+        /****************************************/
+        $comment = new Comment();
+        $comment->setComment('Поздравляю молодоженов!!');
+
+        $comment->setEvent($this->getReference('Freeman\'s Wedding'));
+        $comment->setUser($this->getReference('vasya'));
+
+        $manager->persist($comment);
+
+        /****************************************/
+        $comment = new Comment();
+        $comment->setComment('Слава Мужик!!!');
+
+        $comment->setEvent($this->getReference('Veremei\'s Wedding'));
+        $comment->setUser($this->getReference('john'));
+
+        $manager->persist($comment);
+
+        /****************************************/
+        $comment = new Comment();
+        $comment->setComment('Эх Володя, Завидую Вам!!');
+
+        $comment->setEvent($this->getReference('Volodyas\'s Anniversary'));
+        $comment->setUser($this->getReference('polina'));
+
+        $manager->persist($comment);
+
         $manager->flush();
 
 

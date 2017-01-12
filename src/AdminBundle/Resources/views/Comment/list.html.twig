@@ -13,6 +13,7 @@
                         <th>Created At</th>
                         <th>Last Visited</th>
                         <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                     {#{{ dump(comments) }}#}
 
@@ -24,6 +25,9 @@
                             <td>{{ comment.updatedAt|date("jS F \\a\\t g:ia m/d/Y") }}</td>
                             <td>
                                 <a href="{{ path('admin_comment_edit', {'id': comment.id}) }}" class="btn btn-xs btn-success"><span class="fa fa-pencil"></span></a>
+                            </td>
+                            <td>
+                                <a href="{{ path('admin_comment_delete', {'id': comment.id}) }}" class="btn btn-xs btn-success"><span class="fa fa-pencil"></span></a>
                             </td>
                         </tr>
                     {% endfor %}

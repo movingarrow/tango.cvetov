@@ -20,10 +20,12 @@ class IndexController extends Controller
         $events = $em->getRepository('AppBundle\Entity\Event')
             ->findAll();
 
-        #dump($events);die;
+        $comments = $em->getRepository('AppBundle\Entity\Comment')
+            ->findAll();
 
         return $this->render('AppBundle:index:index.html.twig', [
-            'events' => $events
+            'events' => $events,
+            'comments' => $comments,
         ]);
     }
 }

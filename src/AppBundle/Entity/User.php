@@ -28,6 +28,23 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
+     */
+    private $comment;
+
+    /**
+     * @var string $firstName
+     * @ORM\Column(name="first_name", type="string")
+     */
+    private $firstName;
+
+    /**
+     * @var string $lastName
+     * @ORM\Column(name="last_name", type="string", nullable=true)
+     */
+    private $lastName;
+
+    /**
      * @ORM\Column(name="facebook_id", type="string", length=255, nullable=true)
      */
     private $facebookId;
@@ -51,11 +68,6 @@ class User extends BaseUser
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isActive = true;
 
     /**
      * Get id
@@ -136,9 +148,16 @@ class User extends BaseUser
         }
     }
 
+
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct();
+        $this->comment = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->roles=['ROLE_USER'];
+        $this->enabled=true;
     }
 
     /**
@@ -179,21 +198,86 @@ class User extends BaseUser
         return $this->facebookAccessToken;
     }
 
+
     /**
-     * @return mixed
+     * Add comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     *
+     * @return User
      */
-    public function getIsActive()
+    public function addComment(\AppBundle\Entity\Comment $comment)
     {
-        return $this->isActive;
+        $this->comment[] = $comment;
+
+        return $this;
     }
 
     /**
-     * @param mixed $isActive
+     * Remove comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
      */
-    public function setIsActive($isActive)
+    public function removeComment(\AppBundle\Entity\Comment $comment)
     {
-        $this->isActive = $isActive;
+        $this->comment->removeElement($comment);
     }
 
+    /**
+     * Get comment
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
 
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
 }

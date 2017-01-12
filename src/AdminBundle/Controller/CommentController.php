@@ -14,7 +14,10 @@ use AppBundle\Entity\Comment;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Security("is_granted('ROLE_ADMIN')")
@@ -57,6 +60,40 @@ class CommentController extends Controller
 
         return $this->render('@Admin/Comment/edit.html.twig', [
             'commentForm' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("comment/{id}/delete", name="admin_comment_delete")
+     */
+    public function deleteAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $comments = $em->getRepository('AppBundle:Comment')->find($id);
+        if (!$comments) {
+            throw $this->createNotFoundException(
+                'No comments found with id ' . $id
+            );
+        }
+
+        $form = $this->createFormBuilder($comments)
+            ->add('Yes', SubmitType::class, array(
+        'attr' => array('class' => 'Delete')))
+            ->add('No', SubmitType::class, array(
+                'attr' => array('class' => 'Delete')))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em->remove($comments);
+            $em->flush();
+            return new Response('Comment deleted successfully');
+        }
+
+
+        return $this->render('@Admin/Comment/delete.html.twig', [
+            'deleteForm' => $form->createView()
         ]);
     }
 }

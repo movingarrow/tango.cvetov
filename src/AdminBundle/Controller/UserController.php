@@ -10,10 +10,13 @@ namespace AdminBundle\Controller;
 
 use AdminBundle\Form\UserFormType;
 use AppBundle\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * @Security("is_granted('ROLE_ADMIN')")
@@ -29,8 +32,14 @@ class UserController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         $users = $userManager->findUsers();
 
+        $deleteForms = array();
+        foreach ($users as $user) {
+            $deleteForms[$user->getId()] = $this->createDeleteForm($user->getId())->createView();
+        }
+
         return $this->render('@Admin/User/list.html.twig', [
             'users' => $users,
+            'deleteForms' => $deleteForms
         ]);
     }
 
@@ -58,4 +67,41 @@ class UserController extends Controller
             'userForm' => $form->createView()
         ]);
     }
+
+    /**
+     * Deletes a User entity.
+     *
+     * @Route("/user/{id}/delete", name="admin_user_delete")
+     * @Method("DELETE")
+     */
+    public function deleteAction(Request $request, User $user)
+    {
+        $form = $this->createDeleteForm($user);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('AppBundle:User')->find($user);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find User entity.');
+            }
+
+            $em->remove($entity);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('admin_user_list'));
+    }
+
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('admin_user_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->add('submit', SubmitType::class, array('label' => 'Delete', 'attr' => array('style' => 'border:none;background:none;padding-left:0;color:black;')))
+            ->getForm()
+            ;
+    }
+
 }

@@ -14,35 +14,85 @@ use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
 use Nelmio\Alice\Fixtures;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadUserData extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface
+class LoadUserData extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * Container Interface
+     *
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
+     * Container Interface
+     *
+     * @param ContainerInterface $container
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
+
     public function load(ObjectManager $manager)
     {
         #$objects = Fixtures::load(__DIR__.'/fixtures.yml', $manager);
 
-//        $user = new User();
-//        $user->setUsername('admin');
-//        $user->setPassword('test');
-//        $user->setEmail('test@test.kg');
+        $userManager = $this->container->get('fos_user.user_manager');
 
+        $user = new User();
+        $user->setUsername('polina');
+        $user->setFirstName('Polinochka');
+        $user->setLastName('Melnikova');
+        $user->setPlainPassword('1234');
+        $user->setEmail('polina@gmail.kg');
 
-//        $manager->persist($user);
+        $this->addReference('polina', $user);
 
+        $userManager->updateUser($user);
 
+        /****************************************/
 
-//        for($i = 0; $i < 100; $i++) {
-//            $user = new User();
-//            $user->setUsername('admin' . $i);
-//            $user->setPassword('test' . $i);
-//            $user->setEmail('test'. $i .'@test.kg');
-//            $this->addReference('admin' . $i, $user);
-//            $manager->persist($user);
-//        }
-//
-//
-//
-//        $manager->flush();
+        $user = new User();
+        $user->setUsername('dima');
+        $user->setFirstName('Dmitry');
+        $user->setPlainPassword('1234');
+        $user->setEmail('dima@gmail.kg');
+
+        $this->addReference('dima', $user);
+
+        $userManager->updateUser($user);
+
+        /****************************************/
+
+        $user = new User();
+        $user->setUsername('vasya');
+        $user->setFirstName('Vasiliy');
+        $user->setPlainPassword('1234');
+        $user->setEmail('vasya@gmail.com');
+
+        $this->addReference('vasya', $user);
+
+        $userManager->updateUser($user);
+
+        /****************************************/
+
+        $user = new User();
+        $user->setUsername('john');
+        $user->setFirstName('John');
+        $user->setLastName('Travolta');
+        $user->setPlainPassword('1234');
+        $user->setEmail('john@gmail.com');
+
+        $this->addReference('john', $user);
+
+        $userManager->updateUser($user);
+
+        /****************************************/
+
     }
 
     /**
