@@ -10,7 +10,7 @@
     <meta name="description" content="Admin Panel">
     <meta name="author" content="Dmitry Sosedov">
     <meta name="keyword" content="">
-    <link rel="shortcut icon" href="{{ asset('bundles/admin/asset/img/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('bundles/admin/img/favicon.png') }}">
 
     <title>{% block title %}Tango Cvetov Admin Panel{% endblock title %}</title>
 
@@ -23,7 +23,7 @@
     <!-- font icon -->
     <link href="{{ asset('bundles/admin/css/elegant-icons-style.css') }}" rel="stylesheet" />
     <link href="{{ asset('bundles/admin/assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
-    <link href="{{ asset('bundles/admin/css/font-awesome.css" rel="stylesheet') }}" />
+    <link href="{{ asset('bundles/admin/css/font-awesome.css') }}" rel="stylesheet" />
     <!-- full calendar css-->
     <link href="{{ asset('bundles/admin/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css') }}" rel="stylesheet" />
     <!-- morris chart css-->
@@ -42,6 +42,7 @@
     <script src="{{ asset('bundles/admin/js/respond.min.js') }}'"></script>
     <script src="{{ asset('bundles/admin/js/lte-ie7.js') }}"></script>
     <![endif]-->
+
 </head>
 
 {% endblock head %}
@@ -53,7 +54,7 @@
 
 {{ include('@Admin/Index/header.html.twig') }}
 
-{{ include('@Admin/Index/sidebarMenu.html.twig') }}
+{{ include('@Admin/Index/sidebar_menu.html.twig') }}
 
 
     <!--main content start-->
@@ -565,13 +566,6 @@
 <!--custome script for all page-->
 <script src="{{ asset('bundles/admin/js/scripts.js') }}"></script>
 <!-- custom script for this page-->
-<!-- charts scripts -->
-<script src="{{ asset('bundles/admin/assets/morris.js-0.4.3/morris.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('bundles/admin/assets/morris.js-0.4.3/raphael-min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('bundles/admin/assets/chart-master/Chart.js') }}"></script>
-<!-- custom chart script for this page only-->
-<script src="{{ asset('bundles/admin/js/morris-script.js') }}"></script>
-<!---->
 <script defer src="{{ asset('bundles/admin/js/jquery.flexslider.js') }}"></script>
 <script>
     // Can also be used with $(document).ready()

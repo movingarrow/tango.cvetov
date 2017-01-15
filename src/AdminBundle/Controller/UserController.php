@@ -64,7 +64,7 @@ class UserController extends Controller
         }
 
         return $this->render('@Admin/User/edit.html.twig', [
-            'userForm' => $form->createView()
+            'form' => $form->createView()
         ]);
     }
 

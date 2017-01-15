@@ -26,14 +26,10 @@
                             <td>{{ user.createdAt|date("jS F \\a\\t m/d/Y") }}</td>
                             <td>{{ user.updatedAt|date("jS F \\a\\t g:ia m/d/Y") }}</td>
                             <td>
-                                <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-xs btn-success"><span class="fa fa-pencil"></span></a>
+                                <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-xs btn-success"><span class="fa fa-pencil">edit</span></a>
                             </td>
                             <td>
-                                <a role="menuitem" tabindex="-1"
-                                   href="#" class="delete">
-                                    <i class="fa fa-times"></i>
-                                    {{ form(deleteForms[user.id], { 'attr' : { 'style' : 'display:inline-block;color:black', 'class' : 'ajaxForm'}}) }}
-                                </a>
+                                <a href="{{ path('admin_user_delete', {'id': user.id}) }}" class="btn btn-xs btn-success"><span class="fa fa-pencil">delete</span></a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -43,49 +39,3 @@
     </div>
 
 {% endblock body %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/admin/js/bootbox.min.js') }}"></script>
-{% endblock javascripts %}
-
-{% block bottom_scripts %}
-    {{ parent() }}
-    <script>
-        jQuery(document).ready(function () {
-            Main.init();
-            TableData.init();
-            TableExport.init();
-        });
-
-        $('body').on('submit', '.ajaxForm', function (e) {
-            e.preventDefault();
-            var url = $(this).attr('action');
-            var method = "DELETE";
-            var serializedForm = $(this).serialize();
-            var form= $(this);
-            bootbox.confirm("Are you sure?", function (result) {
-                if (result) {
-                    $.ajax({
-                        url: url,
-                        type: method,
-                        data: serializedForm,
-                        success: function (result) {
-                            form.closest('tr').remove();
-                        },
-                        error: function (e) {
-                            var result = '';
-                            for (i=0; i<=e.responseJSON.length; i++){
-                                if(e.responseJSON[i] != undefined) {
-                                    result += e.responseJSON[i] + "<br />"
-                                }
-                            }
-                            bootbox.alert(result);
-                        }
-                    });
-                }
-            });
-        });
-
-    </script>
-{% endblock bottom_scripts %}

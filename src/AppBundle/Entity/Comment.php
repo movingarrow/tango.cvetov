@@ -39,7 +39,7 @@ class Comment
     private $event;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="comment", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="comment")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $user;

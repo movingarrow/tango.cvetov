@@ -1,12 +1,11 @@
-{{ form_start(userForm) }}
+{{ form_start(form) }}
 
-    {{ form_errors(userForm) }}
+    {{ form_errors(form) }}
 
-    {{ form_row(userForm.username) }}
-    {{ form_row(userForm.email) }}
-    {{ form_row(userForm.isActive) }}
-
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.enabled) }}
 
 
 <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
-{{ form_end(userForm) }}
+{{ form_end(form) }}

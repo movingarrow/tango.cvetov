@@ -220,4 +220,9 @@ class Category
             $this->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         }
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

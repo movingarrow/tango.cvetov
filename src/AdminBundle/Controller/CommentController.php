@@ -59,36 +59,41 @@ class CommentController extends Controller
         }
 
         return $this->render('@Admin/Comment/edit.html.twig', [
-            'commentForm' => $form->createView()
+            'form' => $form->createView()
         ]);
     }
 
     /**
      * @Route("comment/{id}/delete", name="admin_comment_delete")
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, Comment $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $comments = $em->getRepository('AppBundle:Comment')->find($id);
-        if (!$comments) {
+        $comment = $em->getRepository('AppBundle:Comment')->find($id);
+        if (!$comment) {
             throw $this->createNotFoundException(
                 'No comments found with id ' . $id
             );
         }
 
-        $form = $this->createFormBuilder($comments)
-            ->add('Yes', SubmitType::class, array(
-        'attr' => array('class' => 'Delete')))
-            ->add('No', SubmitType::class, array(
-                'attr' => array('class' => 'Delete')))
+        $form = $this->createFormBuilder($comment)
+            ->add('delete', SubmitType::class, array(
+                'attr' => array('class' => "btn btn-primary", 'style' => 'float: left; padding-left: 10px')))
+            ->add('cancel', SubmitType::class, array(
+                'attr' => array('value' => 'Cancel', 'class' => "btn btn-default", 'style' => 'float: left; padding-left: 10px')))
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em->remove($comments);
+            if( isset($request->get('form')['cancel']) )
+                return  $this->redirect($this->generateUrl('admin_comment_list'));
+
+            $em->remove($comment);
             $em->flush();
-            return new Response('Comment deleted successfully');
+            $this->addFlash('success', 'Comment deleted successfully');
+
+            return $this->redirectToRoute('admin_comment_list');
         }
 
 

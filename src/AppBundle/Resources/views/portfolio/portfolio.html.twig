@@ -115,7 +115,7 @@
                         {#{% for image in event.photo %}#}
                             <a href="{{ path('single_event_show', {'eventId': event.id}) }}" class="work-ext-link">
                                 <div class="work-img">
-                                    <img src="{{ asset( event.photo.0.name ) }}" alt="Work"  />
+                                    <img src="{% if event.photo.0.name is defined %}{{ asset( event.photo.0.name ) }}{% else %}{{ asset('bundles/app/images/Coming-Soon.jpg') }}{% endif %}" alt="Work"  />
                                 </div>
                                 <div class="work-intro">
                                     <h3 class="work-title">{{ event.name }}</h3>

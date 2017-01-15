@@ -71,6 +71,12 @@ class Event
      */
     private $comment;
 
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled;
+
 
     /**
      * Constructor
@@ -80,6 +86,7 @@ class Event
         $this->photo = new \Doctrine\Common\Collections\ArrayCollection();
         $this->video = new \Doctrine\Common\Collections\ArrayCollection();
         $this->comment = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->enabled = true;
     }
 
     /**
@@ -313,6 +320,26 @@ class Event
     {
         return $this->comment;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+
+
+    /**
+     * @param boolean $enabled
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+    }
+
+
 
     /**
      * before persist or update call the updatedTimestamps() function.

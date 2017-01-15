@@ -2,7 +2,8 @@
 
     {{ form_errors(form) }}
 
-    {{ form_widget(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.event) }}
 
 <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
 {{ form_end(form) }}

@@ -1,0 +1,44 @@
+{% extends '_admin.base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="pull-right" style="margin-bottom: 10px; margin-top: 20px;">
+                    <a href="{{ path('admin_event_new') }}" class="btn btn-primary pull-right">Add <span class="fa fa-plus-circle"></span></a>
+                </div>
+                <h1>Events</h1>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Enabled</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    {{ dump(events) }}
+
+                    {% for event in events %}
+                        <tr>
+                            <td>{{ event.name }}</td>
+                            <td>{{ event.description }}</td>
+                            <td>{{ event.enabled }}</td>
+                            <td>{{ event.createdAt|date("jS F \\a\\t m/d/Y") }}</td>
+                            <td>{{ event.updatedAt|date("jS F \\a\\t g:ia m/d/Y") }}</td>
+                            <td>
+                                <a href="{{ path('admin_event_edit', {'id': event.id}) }}" class="btn btn-xs btn-success"><span class="fa fa-pencil">edit</span></a>
+                            </td>
+                            <td>
+                                <a href="{{ path('admin_event_delete', {'id': event.id}) }}" class="btn btn-xs btn-success"><span class="fa fa-pencil">delete</span></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
