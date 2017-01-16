@@ -51,7 +51,7 @@ class Event
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="Photo", mappedBy="event")
+     * @ORM\OneToMany(targetEntity="Photo", mappedBy="event", cascade={"persist"})
      */
     private $photo;
 
@@ -205,6 +205,12 @@ class Event
     public function addPhoto(\AppBundle\Entity\Photo $photo)
     {
         $this->photo[] = $photo;
+
+//        $photo->addEvent($this);
+
+//        $this->photo->add($photo);
+
+        $photo->setEvent($this);
 
         return $this;
     }
@@ -360,4 +366,5 @@ class Event
     {
         return $this->getName();
     }
+
 }

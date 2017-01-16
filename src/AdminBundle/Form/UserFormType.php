@@ -16,7 +16,7 @@ class UserFormType extends AbstractType
         $builder
             ->add('username')
             ->add('email')
-            ->add('isActive')
+            ->add('enabled')
         ;
     }
 

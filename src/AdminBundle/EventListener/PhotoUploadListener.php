@@ -8,6 +8,7 @@
 
 namespace AdminBundle\EventListener;
 
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
@@ -53,5 +54,14 @@ class PhotoUploadListener
 
         $fileName = $this->uploader->upload($file);
         $entity->setName($fileName);
+    }
+
+    public function postLoad(LifecycleEventArgs $args)
+    {
+        $entity = $args->getEntity();
+
+        $fileName = $entity->getPhoto();
+
+        $entity->setPhoto(new File($this->targetPath.'/'.$fileName));
     }
 }

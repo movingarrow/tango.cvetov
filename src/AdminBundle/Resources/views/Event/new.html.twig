@@ -7,7 +7,28 @@
         <div class="row">
             <div class="col-xs-12">
                 <h1>Create New Event</h1>
-                {{ include('@Admin/Event/new_form.html.twig') }}
+
+                {{ form_start(form) }}
+
+                {{ form_errors(form) }}
+
+                {{ form_row(form.name) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.enabled) }}
+                {{ form_row(form.category) }}
+
+                {#{{ form_row(form.photo) }}#}
+
+                <ul class="tags" data-prototype="{{ form_widget(form.photo.vars.prototype)|e('html_attr') }}">
+                    {% for photo in form.photo %}
+                        <li>{{ form_row(photo.name) }}</li>
+                    {% endfor %}
+                </ul>
+
+                <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+                {{ form_end(form) }}
+
+
             </div>
         </div>
     </div>
@@ -26,6 +47,11 @@
         jQuery(document).ready(function() {
             // Get the ul that holds the collection of tags
             $collectionHolder = $('ul.tags');
+
+            // add a delete link to all of the existing tag form li elements
+            $collectionHolder.find('li').each(function() {
+                addTagFormDeleteLink($(this));
+            });
 
             // add the "add a tag" anchor and li to the tags ul
             $collectionHolder.append($newLinkLi);
@@ -60,6 +86,22 @@
             // Display the form in the page in an li, before the "Add a tag" link li
             var $newFormLi = $('<li></li>').append(newForm);
             $newLinkLi.before($newFormLi);
+
+            // add a delete link to the new form
+            addTagFormDeleteLink($newFormLi);
+        }
+
+        function addTagFormDeleteLink($tagFormLi) {
+            var $removeFormA = $('<a href="#">remove this photo</a>');
+            $tagFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the tag form
+                $tagFormLi.remove();
+            });
         }
     </script>
 {% endblock javascripts %}

@@ -6,7 +6,7 @@
     </div>
 
     <!--logo start-->
-    <a href="index-2.html" class="logo">By<span>admin</span></a>
+    <a href="{{ path('homepage') }}" class="logo">TANGO<span>CVETOV</span></a>
     <!--logo end-->
 
     <div class="nav search-row" id="top_menu">
@@ -225,7 +225,7 @@
                             <span class="profile-ava">
                                 <img alt="" src="{{ asset('bundles/admin/img/avatar1_small.jpg') }}">
                             </span>
-                    <span class="username">Jhon Doe</span>
+                    <span class="username">{{ app.user.username|upper }}</span>
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu extended logout animated fadeInUp">
