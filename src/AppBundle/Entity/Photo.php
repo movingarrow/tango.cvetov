@@ -46,6 +46,7 @@ class Photo
      */
     private $imageFile;
 
+
     /**
      * @ORM\Column(name="name", type="string", length=255)
      *
@@ -53,12 +54,13 @@ class Photo
      */
     private $name;
 
-//    /**
-//     * @ORM\Column(type="datetime")
-//     *
-//     * @var \DateTime
-//     */
-//    private $updatedAt;
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
 
 
     /**
@@ -149,24 +151,36 @@ class Photo
         return $this;
     }
 
-
-
-//// My custom function
-//    public function removeElement($event)
-//    {
-//        $this->event->removeElement($event);
-//    }
-
-//    public function addEvent(Event $event)
-//    {
-//        if (!$this->event->contains($event)) {
-//            $this->event->add($event);
-//        }
-//    }
-
     public function getEvent()
     {
         return $this->event;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * before persist or update call the updatedTimestamps() function.
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+        $this->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
     }
 
 }

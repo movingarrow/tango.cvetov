@@ -9,9 +9,9 @@
 namespace AdminBundle\Controller;
 
 
-use AdminBundle\Form\EventFormType;
+use AdminBundle\Form\EventNewFormType;
+use AdminBundle\Form\EventEditFormType;
 use AppBundle\Entity\Event;
-use AppBundle\Entity\Photo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,7 +25,7 @@ class EventController extends Controller
      */
     public function newAction(Request $request)
     {
-        $form = $this->createForm(EventFormType::class);
+        $form = $this->createForm(EventNewFormType::class);
 
         // only handles data on POST
         $form->handleRequest($request);
@@ -75,31 +75,25 @@ class EventController extends Controller
 
         $originalPhoto = new ArrayCollection();
 
-        // Create an ArrayCollection of the current Photo objects in the database
         foreach ($event->getPhoto() as $photo) {
             $originalPhoto->add($photo);
         }
 
-        $editForm = $this->createForm(EventFormType::class, $event);
+        $editForm = $this->createForm(EventEditFormType::class, $event);
 
         $editForm->handleRequest($request);
 
-
         if ($editForm->isValid()) {
 
-            // remove the relationship between the photo and the Event
             foreach ($originalPhoto as $photo) {
                 if (false === $event->getPhoto()->contains($photo)) {
-                    // remove the Event from the Photo
-                    $photo->getEvent()->removeElement($event);
 
-                    // if it was a many-to-one relationship, remove the relationship like this
-                    // $photo->setEvent(null);
+//                    $photo->getEvent()->removeElement($event);
+
+                    $event->removePhoto($photo);
 
                     $em->persist($photo);
-
-                    // if you wanted to delete the Photo entirely, you can also do that
-//                     $em->remove($photo);
+//                    $em->remove($photo);
                 }
             }
 
@@ -112,35 +106,10 @@ class EventController extends Controller
 
         $form = $editForm;
 
-        return $this->render('@Admin/Event/new.html.twig', [
+        return $this->render('@Admin/Event/edit.html.twig', [
             'form' => $form->createView()
         ]);
     }
-
-//    /**
-//     * @Route("event/{id}/edit", name="admin_event_edit")
-//     */
-//    public function editAction(Request $request, Event $event)
-//    {
-//        $form = $this->createForm(EventFormType::class, $event);
-//
-//        // only handles data on POST
-//        $form->handleRequest($request);
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $events = $form->getData();
-//
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($events);
-//            $em->flush();
-//            $this->addFlash('success', 'Event updated!');
-//
-//            return $this->redirectToRoute('admin_event_list');
-//        }
-//
-//        return $this->render('@Admin/Event/new.html.twig', [
-//            'form' => $form->createView()
-//        ]);
-//    }
 
     /**
      * @Route("event/{id}/delete", name="admin_event_delete")

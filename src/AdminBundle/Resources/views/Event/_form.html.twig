@@ -1,17 +1,22 @@
 {{ form_start(form) }}
 
-    {{ form_errors(form) }}
+                {{ form_errors(form) }}
 
-    {{ form_row(form.name) }}
-    {{ form_row(form.description) }}
-    {{ form_row(form.category) }}
-    {{ form_row(form.enabled) }}
+                {{ form_row(form.name) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.enabled) }}
+                {{ form_row(form.category) }}
 
-{#<ul class="fa-photo" data-prototype="{{ form_widget(form.photo.vars.prototype)|e('html_attr') }}">#}
-    {#{{ form_row(form.photo) }}#}
-{#</ul>#}
+                {#{{ form_row(form.photo) }}#}
 
-    {{ form_row(form.photo) }}
+<ul class="tags" data-prototype="{{ form_widget(form.photo.vars.prototype)|e('html_attr') }}">
+    {% for photo in form.photo %}
+        <li>{{ form_row(photo.name) }}</li>
+        {#<li>{{ form_row(photo.imageFile) }}</li>#}
+    {% endfor %}
+</ul>
+{#{{ dump(form) }}#}
+{#{{ form.photo.vars.imageFile }}#}
 
 <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
 {{ form_end(form) }}

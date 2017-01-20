@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EventFormType extends AbstractType
+class EventNewFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -22,10 +22,9 @@ class EventFormType extends AbstractType
                 'class' => Category::class
             ])
             ->add('enabled')
-//            ->add('imageFile', FileType::class)
             ->add('photo', CollectionType::class, array(
                 'label' => false,
-                'entry_type' => PhotoType::class,
+                'entry_type' => PhotoNewType::class,
                 'allow_add'    => true,
                 'by_reference' => false,
                 'allow_delete' => true,

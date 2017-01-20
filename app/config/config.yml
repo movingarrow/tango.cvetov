@@ -13,7 +13,6 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    upload_directory: '%kernel.root_dir%/../web/bundles/app/images/portfolio'
 
 framework:
     #esi:             ~
@@ -46,7 +45,7 @@ twig:
     strict_variables: "%kernel.debug%"
     form_themes:
         - bootstrap_3_layout.html.twig
-#        - 'VichUploaderBundle:Form:fields.html.twig'
+        - 'VichUploaderBundle:Form:fields.html.twig'
 
 
 # Doctrine Configuration
@@ -116,8 +115,9 @@ vich_uploader:
 
     mappings:
         event_image:
-            uri_prefix: /bundles/app/app/images/products/portfolio
+            uri_prefix: /bundles/app/images/portfolio
             upload_destination: '%kernel.root_dir%/../web/bundles/app/images/portfolio'
+#            directory_namer:    my.directory_namer.photo
 
             inject_on_load:     false
             delete_on_update:   true
