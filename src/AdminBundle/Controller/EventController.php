@@ -92,8 +92,8 @@ class EventController extends Controller
 
                     $event->removePhoto($photo);
 
-                    $em->persist($photo);
-//                    $em->remove($photo);
+//                    $em->persist($photo);
+                    $em->remove($photo);
                 }
             }
 

@@ -490,9 +490,9 @@
                 {% for key, event in events %}
                     <li class="work-item mix {{  event.category.name|lower }}">
                         {% for image in event.photo %}
-                            <a href="{{ asset( image.name ) }}" class="lightbox-gallery-{{ key }} mfp-image">
+                            <a href="{{ vich_uploader_asset(image, 'imageFile', 'AppBundle\\Entity\\Photo') }}" class="lightbox-gallery-{{ key }} mfp-image">
                                 <div class="work-img">
-                                    <img  {% if loop.index != 1 %} style="display:none" {% endif %}  src="{{ asset( image.name ) }}" alt="Work"  />
+                                    <img  {% if loop.index != 1 %} style="display:none" {% endif %}  src="{{ vich_uploader_asset(image, 'imageFile', 'AppBundle\\Entity\\Photo') }}" alt="{{ image.name }}"  />
                                 </div>
                                 <div class="work-intro">
                                     <h3 class="work-title">{{ event.name }}</h3>

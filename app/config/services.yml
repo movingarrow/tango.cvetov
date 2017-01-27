@@ -4,6 +4,10 @@ parameters:
 #    parameter_name: value
 
 services:
+    tango.directory.namer:
+        class: AdminBundle\Service\DirectoryNamer
+        arguments: [%kernel.root_dir%]
+
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

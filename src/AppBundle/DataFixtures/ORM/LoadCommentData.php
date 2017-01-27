@@ -56,7 +56,7 @@ class LoadCommentData extends AbstractFixture implements FixtureInterface, Order
         $comment = new Comment();
         $comment->setComment('Эх Володя, Завидую Вам!!');
 
-        $comment->setEvent($this->getReference('Volodyas\'s Anniversary'));
+        $comment->setEvent($this->getReference('Volodya\'s Anniversary'));
         $comment->setUser($this->getReference('polina'));
 
         $manager->persist($comment);

@@ -30,13 +30,6 @@ class Photo
      */
     private $id;
 
-//    /**
-//     * @var string $name
-//     *
-//     * @ORM\Column(name="name", type="string")
-//     */
-//    private $name;
-
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *

@@ -67,9 +67,8 @@
     {#</table>#}
 
     <!-- Head Section -->
-    <section class="page-section bg-dark-alfa-30" data-background="{{ asset(event.photo.0.name) }}">
+    <section class="page-section bg-dark-alfa-30" data-background="{{ vich_uploader_asset(event.photo.0, 'imageFile') }}">
         <div class="relative container align-left">
-
             <div class="row">
 
                 <div class="col-md-8">
@@ -165,7 +164,8 @@
                 <ul class="clearlist work-full-slider owl-carousel">
                     {% for image in event.photo %}
                     <li>
-                        <img src="{{ asset( image.name ) }}" alt="" />
+                        {#<img src="{{ asset( image.name ) }}" alt="" />#}
+                        <img src="{% if image is defined %}{{ vich_uploader_asset(image, 'imageFile', 'AppBundle\\Entity\\Photo') }}{% else %}{{ asset('bundles/app/images/Coming-Soon.jpg') }}{% endif %}" alt="{{ image.name }}" />
                     </li>
                     {#<li>#}
                         {#<img src="{{ asset('bundles/app/images/portfolio/full-project-2.jpg') }}" alt="" />#}

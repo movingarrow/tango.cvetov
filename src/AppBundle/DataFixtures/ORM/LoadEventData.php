@@ -53,10 +53,10 @@ class LoadEventData extends AbstractFixture implements FixtureInterface, Ordered
         /****************************************/
 
         $event = new Event();
-        $event->setName('Volodyas\'s Anniversary');
-        $event->setDescription('Volodyas\'s Anniversary at Kainar!');
+        $event->setName('Volodya\'s Anniversary');
+        $event->setDescription('Volodya\'s Anniversary at Kainar!');
 
-        $this->addReference('Volodyas\'s Anniversary', $event);
+        $this->addReference('Volodya\'s Anniversary', $event);
 
         $event->setCategory($this->getReference('Anniversary'));
 

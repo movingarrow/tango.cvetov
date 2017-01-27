@@ -11,9 +11,12 @@
 
 <ul class="tags" data-prototype="{{ form_widget(form.photo.vars.prototype)|e('html_attr') }}">
     {% for photo in form.photo %}
-        <li>{{ form_row(photo.name) }}</li>
-        {#<li>{{ form_row(photo.imageFile) }}</li>#}
+        {#<li>{{ form_row(photo.name) }}</li>#}
+        <li>{{ form_row(photo.imageFile) }}</li>
+        {{ dump(photo.imageFile) }}
+        <br>
     {% endfor %}
+
 </ul>
 {#{{ dump(form) }}#}
 {#{{ form.photo.vars.imageFile }}#}

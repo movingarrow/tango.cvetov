@@ -14,12 +14,12 @@ class PhotoEditType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+//            ->add('name')
             ->add('imageFile', VichImageType::class, [
             'label' => false,
             'required' => false,
-            'allow_delete' => true, // not mandatory, default is true
-            'download_link' => true, // not mandatory, default is true)
+            'allow_delete' => false, // not mandatory, default is true
+            'download_link' => false, // not mandatory, default is true)
         ]);
 
     }
